@@ -8,7 +8,7 @@ export const fetchFakeApi = (cb, params) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(cb(params));
-    }, 1500);
+    }, 500);
   });
 };
 

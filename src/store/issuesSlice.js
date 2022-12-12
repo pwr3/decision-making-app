@@ -35,9 +35,14 @@ export const issuesSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-        .addCase(fetchIssues.fulfilled, (state, action) => {
-        state.issueList = action.payload;
+        .addCase(fetchIssues.pending, (state, action) => {
+            state.loading = true;
         })
+        .addCase(fetchIssues.fulfilled, (state, action) => {
+            state.loading = false;
+            state.issueList = action.payload;
+        })
+
         .addCase(createIssue.fulfilled, (state, action) => {
         console.log('ADDED', action.payload);
         state.currentIssue = action.payload;

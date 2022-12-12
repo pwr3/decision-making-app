@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { ChakraProvider, Container, Box, HStack } from "@chakra-ui/react";
+import IssuesPage from "./IssuesPage";
 
 
 const Layout = () => {
@@ -10,7 +11,7 @@ const Layout = () => {
             <Container maxW='container.lg' bg='green.400'>
                 <HStack>
                     <Box bg='tomato' color='white'>
-                        Yo, some text in da container ;]
+                        <IssuesPage />
                     </Box>
                     <Box bg='aliceblue' color='tomato'>
                         Yo, some text in da container ;]
