@@ -1,31 +1,28 @@
-import React, {useEffect} from 'react';
-import { useAppSelector } from './hooks';
-import { useDispatch } from "react-redux";
-import {createIssue, fetchIssues} from './store/issuesSlice'
+import React from 'react';
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
-import {bindActionCreators} from "@reduxjs/toolkit";
+import Layout from "./view/Layout";
+// import { bindActionCreators } from '@reduxjs/toolkit';
 
-export default function App() {
-    const issues = useAppSelector((state) => state.issues);
+const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <Layout />,
+        errorElement: <>Not Found...</>,
+        children: [
+            {
+                path: '/issues/:issue-id',
+                element: <>Option Page</>
+            }
+        ]
+    }
+])
 
-    useEffect(() => {
-        dispatch(fetchIssues());
-    }, [issues.currentIssue])
-
-    const dispatch = useDispatch();
-    console.log(issues)
+const App = () => {
   return (
-    <div>
-      App
-        <br />
-        <br />
-        {issues.issueList.map((issue) => {
-            return <p>{issue.id} {issue.title} {issue.optionNum}</p>
-        })}
-        <br />
-      <button onClick={() => dispatch(fetchIssues())}>Get</button>
-      <button onClick={() => dispatch((createIssue()))
-          .then(() => dispatch(fetchIssues()))}>ADD</button>
-    </div>
+      <RouterProvider router={router}></RouterProvider>
+
   );
 }
+
+export default App;
