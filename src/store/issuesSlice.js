@@ -19,8 +19,8 @@ export const fetchIssues = createAsyncThunk(
 
 export const createIssue = createAsyncThunk(
     'issues/createIssue',
-    async () => {
-        const res = await apiCreateIssue('Some cool title yo');
+    async (title) => {
+        const res = await apiCreateIssue(title);
         return res;
     }
 )
@@ -45,7 +45,7 @@ export const issuesSlice = createSlice({
 
         .addCase(createIssue.fulfilled, (state, action) => {
         console.log('ADDED', action.payload);
-        state.currentIssue = action.payload;
+        // state.currentIssue = action.payload;
         })
 
   }

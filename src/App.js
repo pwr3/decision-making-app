@@ -1,25 +1,29 @@
 import React from 'react';
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
+// import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Layout from "./view/Layout";
 
-const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <Layout />,
-        errorElement: <>Not Found...</>,
-        children: [
-            {
-                path: '/issues/:issue-id',
-                element: <>Option Page</>
-            }
-        ]
-    }
-])
+// const router = createBrowserRouter([
+//     {
+//         path: '/la',
+//         element: <>asdasdasd</>,
+//         errorElement: <>Not Found......</>,
+//         children: [
+//             {
+//                 path: 'issues/',
+//                 element: <>Option Page</>
+//             }
+//         ]
+//     },
+//     {
+//         path: '/fu',
+//         element: <>FUUUU</>
+//     }
+// ])
 
 const App = () => {
   return (
-      <RouterProvider router={router}></RouterProvider>
-
+      // <RouterProvider router={router}></RouterProvider>
+    <>cccccccc</>
   );
 }
 
