@@ -2,7 +2,6 @@ import React from 'react';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
 import Layout from "./view/Layout";
-// import { bindActionCreators } from '@reduxjs/toolkit';
 
 const router = createBrowserRouter([
     {

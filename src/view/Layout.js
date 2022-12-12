@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 const Layout = () => {
     return(
         <div>
-            layout
+            layout yo, ne branch
             <Outlet />
         </div>
     )
