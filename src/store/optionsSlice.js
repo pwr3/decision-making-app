@@ -2,9 +2,10 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {apiCreateOption, apiGetOptions} from "../services/options";
 
 const initialState = {
-  loading: false,
-  error: false,
-  optionsList: []
+    loading: false,
+    error: false,
+    issueData: { title: '' },
+    optionsList: []
 };
 
 export const fetchOptions = createAsyncThunk(
@@ -33,7 +34,8 @@ export const optionsSlice = createSlice({
             })
             .addCase(fetchOptions.fulfilled, (state, action) => {
                 state.loading = false;
-                state.optionsList = action.payload;
+                state.issueData = action.payload.issueData
+                state.optionsList = action.payload.optionsList;
             })
 
             .addCase(createOption.fulfilled, (state, action) => {

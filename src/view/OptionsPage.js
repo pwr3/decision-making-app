@@ -3,7 +3,19 @@ import { useAppSelector } from '../hooks';
 import { useDispatch } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { createOption, fetchOptions } from "../store/optionsSlice";
-import {Box, FormControl, Input} from "@chakra-ui/react";
+import {
+    Accordion,
+    AccordionButton,
+    AccordionIcon,
+    AccordionItem, AccordionPanel,
+    Box,
+    Center,
+    FormControl, Heading,
+    Input,
+    Spinner
+} from "@chakra-ui/react";
+import Reasons from "./components/Reasons";
+
 
 const NewOption = ({ issueId }) => {
     const [ title, setTitle ] = useState('')
@@ -32,16 +44,24 @@ const NewOption = ({ issueId }) => {
 const OptionsList = ({options}) => {
     return (
         <Box>
-            {options.map((option) => (<OptionsRow option={option} key={option.id} />))}
+            <Accordion>
+                {options.map((option) => (<OptionsRow option={option} key={option.id} />))}
+            </Accordion>
         </Box>
     )
 }
 
 const OptionsRow = ({option}) => {
     return (
-        <Box>
-            <>{option.title}</>
-        </Box>
+        <AccordionItem>
+            <AccordionButton>
+                <AccordionIcon />
+                <>{option.title}</>
+            </AccordionButton>
+            <AccordionPanel>
+                <Reasons />
+            </AccordionPanel>
+        </AccordionItem>
     )
 }
 
@@ -54,8 +74,8 @@ const OptionsPage = () => {
     }, [])
 
     return (
-        <>
-            OPTIONS {issue_id}
+        <>  {options.loading && <Center p={16}><Spinner /></Center>}
+            <Heading as='h2' size='md'>{options.issueData.title}</Heading>
             <OptionsList options={options.optionsList} />
             <NewOption issueId={issue_id} />
         </>

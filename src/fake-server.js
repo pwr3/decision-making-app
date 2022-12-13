@@ -2,10 +2,11 @@
 
 export const fetchFakeApi = (cb, params) => {
   console.log('fetchFakeApi (fake-server)');
+  const randomDelay = Math.floor(Math.random() * 500);
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(cb(params));
-    }, 500);
+    }, randomDelay);
   });
 };
 
@@ -54,12 +55,20 @@ const removeIssue = (id) => {
   localStorage.setItem('issues', JSON.stringify(issues));
 };
 
+const getIssueById = (id) => {
+  return getIssues().filter((issue) => issue.id == id);
+}
+
 /* OPTIONS */
 
 const fetchOptions = (issueId) => {
-  return getOptionsByIssueId(issueId).map((option) => {
+  const issueData = { title: getIssueById(issueId)[0].title };
+  const optionsList = getOptionsByIssueId(issueId).map((option) => {
     return { ...option, reasons_stata_data: [] };
   });
+  return {issueData, optionsList};
+
+
 };
 
 const getOptions = () => {
