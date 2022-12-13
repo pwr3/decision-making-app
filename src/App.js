@@ -8,7 +8,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Layout />,
-        errorElement: <>Not Found...</>,
+        errorElement: <>Not Found...!!!</>,
         children: [
             {
                 path: '/issues/:issue-id',
