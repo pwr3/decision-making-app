@@ -3,7 +3,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Layout from "./view/Layout";
 import OptionsPage from "./view/OptionsPage";
 
-const router = createBrowserRouter([
+const routes = createBrowserRouter([
     {
         path: '/',
         element: <Layout />,
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
 ])
 const App = () => {
     return(
-        <RouterProvider router={router}></RouterProvider>
+        <RouterProvider router={routes}></RouterProvider>
     )
 }
 
