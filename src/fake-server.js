@@ -57,6 +57,7 @@ const removeIssue = (id) => {
 /* OPTIONS */
 
 const fetchOptions = (issueId) => {
+  console.log(issueId)
   return getOptionsByIssueId(issueId).map((option) => {
     return { ...option, reasons_stata_data: [] };
   });
@@ -74,7 +75,9 @@ const getOptionsByIssueId = (issueId) => {
   return allOptions.filter((option) => option.issue_id === issueId);
 };
 
-export const createOption = (title, issueId) => {
+export const createOption = (payload) => {
+  const { title, issueId } = payload;
+
   let allOptions = getOptions();
 
   if (allOptions === null) {
@@ -90,6 +93,7 @@ export const createOption = (title, issueId) => {
 
   allOptions.push(newOption);
   localStorage.setItem('options', JSON.stringify(allOptions));
+  return optionId;
 };
 
 

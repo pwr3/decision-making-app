@@ -47,5 +47,3 @@ export const issuesSlice = createSlice({
 
   }
 });
-
-export const issuesReducer = issuesSlice.reducer;

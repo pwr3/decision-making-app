@@ -9,16 +9,16 @@ const initialState = {
 
 export const fetchOptions = createAsyncThunk(
     'options/fetchOption',
-    async () => {
-        return await apiGetOptions();
+    async (payload) => {
+        return await apiGetOptions(payload);
 
     }
 )
 
 export const createOption = createAsyncThunk(
     'options/createOption',
-    async (title) => {
-        return await apiCreateOption(title);
+    async (payload) => {
+        return await apiCreateOption(payload);
     }
 )
 
