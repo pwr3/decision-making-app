@@ -57,7 +57,6 @@ const removeIssue = (id) => {
 /* OPTIONS */
 
 const fetchOptions = (issueId) => {
-  console.log(issueId)
   return getOptionsByIssueId(issueId).map((option) => {
     return { ...option, reasons_stata_data: [] };
   });
@@ -72,7 +71,7 @@ const getOptionsByIssueId = (issueId) => {
   if (allOptions === null) {
     return [];
   }
-  return allOptions.filter((option) => option.issue_id === issueId);
+  return allOptions.filter((option) => option.issue_id == issueId);
 };
 
 export const createOption = (payload) => {

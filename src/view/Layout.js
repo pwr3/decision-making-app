@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { ChakraProvider, Container, Box, HStack } from "@chakra-ui/react";
+import { ChakraProvider, Container, Box, Flex } from "@chakra-ui/react";
 import IssuesPage from "./IssuesPage";
 
 
@@ -8,15 +8,15 @@ const Layout = () => {
     return(
         <ChakraProvider>
         <div>
-            <Container maxW='container.lg' bg='green.400'>
-                <HStack>
-                    <Box bg='tomato' color='white'>
+            <Container maxW='container.lg'>
+                <Flex>
+                    <Box w='50%' border='1px' p={6}>
                         <IssuesPage />
                     </Box>
-                    <Box bg='aliceblue' color='tomato'>
+                    <Box w='50%' border='1px' p={6}>
                         <Outlet />
                     </Box>
-                </HStack>
+                </Flex>
             </Container>
         </div>
         </ChakraProvider>

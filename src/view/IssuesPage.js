@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Spinner, Center, FormControl, Input } from "@chakra-ui/react";
+import {Box, Spinner, Center, FormControl, Input, LinkBox, LinkOverlay, Divider} from "@chakra-ui/react";
 import { useAppSelector } from '../hooks';
 import { useDispatch } from 'react-redux';
 import { createIssue, fetchIssues } from '../store/issuesSlice';
@@ -34,16 +34,18 @@ const IssuesList = ({issues}) => {
     return (
         <Box>
             {issues.map((issue) => (<IssueRow issue={issue} key={issue.id} />))}
-            issue list
         </Box>
     )
 }
 
 const IssueRow = ({issue}) => {
     return (
-        <Box>
-            {issue.id} {issue.title}
-        </Box>
+        <>
+        <LinkBox my={1} py={3} >
+            <LinkOverlay href='#'>{issue.title}</LinkOverlay> {issue.optionNum}
+        </LinkBox>
+        <Divider />
+        </>
     )
 }
 
@@ -53,7 +55,7 @@ const IssuesPage = () => {
 
     useEffect(() => {
         dispatch(fetchIssues());
-    }, [issues.currentIssue]);
+    }, []);
 
     return (
         <>
