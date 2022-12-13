@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {Box, Spinner, Center, FormControl, Input} from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { Box, Spinner, Center, FormControl, Input } from "@chakra-ui/react";
 import { useAppSelector } from '../hooks';
 import { useDispatch } from 'react-redux';
 import { createIssue, fetchIssues } from '../store/issuesSlice';
@@ -15,7 +15,7 @@ const NewIssue = () => {
         dispatch(createIssue(title))
             .then((res) => navigate('/issues/'+ res.payload));
     }
-    return(
+    return (
         <Box>
             <form onSubmit={handleSubmit}>
                 <FormControl>
@@ -31,7 +31,7 @@ const NewIssue = () => {
 }
 
 const IssuesList = ({issues}) => {
-    return(
+    return (
         <Box>
             {issues.map((issue) => (<IssueRow issue={issue} key={issue.id} />))}
             issue list
@@ -40,7 +40,7 @@ const IssuesList = ({issues}) => {
 }
 
 const IssueRow = ({issue}) => {
-    return(
+    return (
         <Box>
             {issue.id} {issue.title}
         </Box>

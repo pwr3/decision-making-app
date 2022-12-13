@@ -1,10 +1,7 @@
 /* FETCH */
 
-// import {deleteIssue} from "./services/issues";
-
 export const fetchFakeApi = (cb, params) => {
-  console.log('fetchFakeApi');
-  // console.log('dd', cb(params))
+  console.log('fetchFakeApi (fake-server)');
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(cb(params));
@@ -12,11 +9,7 @@ export const fetchFakeApi = (cb, params) => {
   });
 };
 
-export const fetchOptions = (issueId) => {
-  return getOptionsByIssueId(issueId).map((option) => {
-    return { ...option, reasons_stata_data: [] };
-  });
-};
+
 
 export const fetchReasons = (optionId) => {
   return getReasonsByIssueId(optionId).map((reason) => {
@@ -63,6 +56,12 @@ const removeIssue = (id) => {
 
 /* OPTIONS */
 
+const fetchOptions = (issueId) => {
+  return getOptionsByIssueId(issueId).map((option) => {
+    return { ...option, reasons_stata_data: [] };
+  });
+};
+
 const getOptions = () => {
   return JSON.parse(localStorage.getItem('options'));
 };
@@ -92,6 +91,7 @@ export const createOption = (title, issueId) => {
   allOptions.push(newOption);
   localStorage.setItem('options', JSON.stringify(allOptions));
 };
+
 
 /* REASONS */
 

@@ -1,27 +1,24 @@
-import { createAsyncThunk, createSlice, nanoid } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {apiCreateIssue, apiGetIssues } from "../services/issues";
-import {useDispatch} from "react-redux";
+
 
 const initialState = {
   loading: false,
   error: false,
-  currentIssue: 0,
   issueList: []
 };
 
 export const fetchIssues = createAsyncThunk(
     'issues/fetchIssues',
     async () => {
-      const res = await apiGetIssues();
-      return res;
+        return await apiGetIssues();
     }
 )
 
 export const createIssue = createAsyncThunk(
     'issues/createIssue',
     async (title) => {
-        const res = await apiCreateIssue(title);
-        return res;
+        return await apiCreateIssue(title);
     }
 )
 
@@ -29,9 +26,9 @@ export const issuesSlice = createSlice({
   name: 'issues',
   initialState,
   reducers: {
-      fetch:(state, action) => {
-          state.issueList = action.payload
-      }
+      // fetch:(state, action) => {
+      //     state.issueList = action.payload
+      // }
   },
   extraReducers: (builder) => {
     builder
