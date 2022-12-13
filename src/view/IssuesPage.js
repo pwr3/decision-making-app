@@ -3,14 +3,17 @@ import {Box, Spinner, Center, FormControl, Input} from "@chakra-ui/react";
 import { useAppSelector } from '../hooks';
 import { useDispatch } from 'react-redux';
 import { createIssue, fetchIssues } from '../store/issuesSlice';
+import { useNavigate } from "react-router-dom";
 
 const NewIssue = () => {
     const [ title, setTitle ] = useState('')
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const handleSubmit = (e) => {
         e.preventDefault();
         setTitle('');
-        dispatch(createIssue(title));
+        dispatch(createIssue(title))
+            .then((res) => navigate('/issues/'+ res.payload));
     }
     return(
         <Box>

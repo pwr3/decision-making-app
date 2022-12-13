@@ -14,7 +14,6 @@ const Layout = () => {
                         <IssuesPage />
                     </Box>
                     <Box bg='aliceblue' color='tomato'>
-                        Yo, some text in da container ;]
                         <Outlet />
                     </Box>
                 </HStack>

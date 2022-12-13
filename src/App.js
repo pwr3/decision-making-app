@@ -1,6 +1,7 @@
 import React from "react";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Layout from "./view/Layout";
+import OptionsPage from "./view/OptionsPage";
 
 const router = createBrowserRouter([
     {
@@ -9,8 +10,8 @@ const router = createBrowserRouter([
         // errorElement: <>Not Found......</>,
         children: [
             {
-                path: 'issues/:id',
-                element: <>Option Page</>
+                path: 'issues/:issue_id',
+                element: <OptionsPage />
             }
         ]
     },
