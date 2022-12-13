@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import {Box, Spinner, Center, FormControl, Input, LinkBox, LinkOverlay, Divider} from "@chakra-ui/react";
-import { useAppSelector } from '../hooks';
-import { useDispatch } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../hooks';
 import { createIssue, fetchIssues } from '../store/issuesSlice';
 import { useNavigate } from "react-router-dom";
 
 const NewIssue = () => {
     const [ title, setTitle ] = useState('')
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const handleSubmit = (e) => {
         e.preventDefault();
         setTitle('');
@@ -51,7 +50,7 @@ const IssueRow = ({issue}) => {
 
 const IssuesPage = () => {
     const issues = useAppSelector((state) => state.issues);
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(fetchIssues());

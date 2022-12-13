@@ -1,9 +1,12 @@
-import React from "react";
+import React, {useEffect} from "react";
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { createReason, fetchReasons } from '../../store/reasonsSlice';
+
 
 const NewReason = () => {
     return (
         <>
-            new reason
+
         </>
     )
 }
@@ -17,18 +20,25 @@ const ReasonsList = ({ reasons }) => {
 }
 
 const ReasonsRow = ({ reason }) => {
+    console.log(reason);
     return (
         <>
-            {reason.title}
+            <p>{reason.title}</p>
         </>
     )
 }
 
-const Reasons = () => {
-    const reasons = [];
+const Reasons = ({ optionId }) => {
+    const reasons = useAppSelector((state) => state.reasons);
+    const dispatch = useAppDispatch();
+    useEffect(() => {
+        dispatch(fetchReasons(optionId));
+    }, [])
+
     return (
         <>
-            <ReasonsList reasons={reasons} />
+            <ReasonsList reasons={reasons.reasonsList} />
+            <p>{optionId}</p>
             <NewReason />
         </>
     )

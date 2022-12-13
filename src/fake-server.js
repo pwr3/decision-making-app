@@ -12,12 +12,6 @@ export const fetchFakeApi = (cb, params) => {
 
 
 
-export const fetchReasons = (optionId) => {
-  return getReasonsByIssueId(optionId).map((reason) => {
-    return { ...reason };
-  });
-};
-
 /* ISSUES */
 
 const getIssues = () => {
@@ -67,8 +61,6 @@ const fetchOptions = (issueId) => {
     return { ...option, reasons_stata_data: [] };
   });
   return {issueData, optionsList};
-
-
 };
 
 const getOptions = () => {
@@ -107,11 +99,17 @@ export const createOption = (payload) => {
 
 /* REASONS */
 
+export const fetchReasons = (optionId) => {
+  // return getReasonsByOptionId(optionId).map((reason) => {
+    return getReasonsByOptionId(optionId);
+  // });
+};
+
 const getReasons = () => {
   return JSON.parse(localStorage.getItem('reasons'));
 };
 
-const getReasonsByIssueId = (optionId) => {
+const getReasonsByOptionId = (optionId) => {
   let allReasons = getReasons();
   if (allReasons === null) {
     return [];
@@ -150,3 +148,10 @@ export const options = {
   create: createOption,
   delete: () => {},
 };
+
+export const reasons = {
+  get: fetchReasons,
+  create: createReason,
+  delete: () => {},
+};
+

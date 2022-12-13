@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { useAppSelector } from '../hooks';
-import { useDispatch } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../hooks';
 import { useParams } from "react-router-dom";
 import { createOption, fetchOptions } from "../store/optionsSlice";
 import {
@@ -19,7 +18,7 @@ import Reasons from "./components/Reasons";
 
 const NewOption = ({ issueId }) => {
     const [ title, setTitle ] = useState('')
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const handleSubmit = (e) => {
         e.preventDefault();
         setTitle('');
@@ -59,7 +58,7 @@ const OptionsRow = ({option}) => {
                 <>{option.title}</>
             </AccordionButton>
             <AccordionPanel>
-                <Reasons />
+                <Reasons optionId={option.id}/>
             </AccordionPanel>
         </AccordionItem>
     )
@@ -68,7 +67,7 @@ const OptionsRow = ({option}) => {
 const OptionsPage = () => {
     const options = useAppSelector((state) => state.options);
     const { issue_id } = useParams();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(fetchOptions(issue_id))
     }, [])
