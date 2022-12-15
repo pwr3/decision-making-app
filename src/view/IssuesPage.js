@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from '../hooks';
 import { createIssue, fetchIssues } from '../store/issuesSlice';
 import {Box, Divider, List, ListItemButton, ListItemText, Chip, CircularProgress, TextField} from '@mui/material'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const NewIssue = () => {
     const [ title, setTitle ] = useState('')
@@ -51,6 +51,9 @@ const IssueRow = ({issue}) => {
 }
 
 const IssuesPage = () => {
+    console.log('--> IssuesPage')
+    // const location = useLocation();
+    // console.log('loc', location.pathname);
     const issues = useAppSelector((state) => state.issues);
     const dispatch = useAppDispatch();
 

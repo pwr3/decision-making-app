@@ -26,8 +26,8 @@ export const issuesSlice = createSlice({
   name: 'issues',
   initialState,
   reducers: {
-      // fetch:(state, action) => {
-      //     state.issueList = action.payload
+      // createIssue:(state, action) => {
+      //     state.error = true
       // }
   },
   extraReducers: (builder) => {
@@ -42,8 +42,8 @@ export const issuesSlice = createSlice({
 
         .addCase(createIssue.fulfilled, (state, action) => {
         console.log('ADDED', action.payload);
-        // state.currentIssue = action.payload;
         })
+
 
   }
 });

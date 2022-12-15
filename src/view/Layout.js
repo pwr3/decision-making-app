@@ -4,7 +4,10 @@ import IssuesPage from "./IssuesPage";
 import {Container, Stack, Box} from "@mui/material";
 
 
+
 const Layout = () => {
+    console.log('--> Layout')
+    // const issues = useAppSelector((state) => state.issues);
     return(
         <div>
             <Container maxWidth='xl'>
