@@ -1,52 +1,28 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import IssuesPage from "./IssuesPage";
+import {Container, Stack, Box} from "@mui/material";
+
 
 const Layout = () => {
     return(
         <div>
-            layout
-            <Outlet />
+            <Container maxWidth='xl'>
+                <Stack
+                    direction='row'
+                    spacing={2}
+                    justifyContent='center'
+                    alignItems='flex-start'>
+                    <Box sx={{ width: '50%'}}>
+                        <IssuesPage />
+                    </Box>
+                    <Box sx={{ width: '50%'}}>
+                        <Outlet />
+                    </Box>
+                </Stack>
+            </Container>
         </div>
     )
 }
 
 export default Layout;
-
-//
-// import { useAppSelector } from './hooks';
-// import { useDispatch } from 'react-redux';
-// import { createIssue, fetchIssues } from './store/issuesSlice';
-//
-//
-// const issues = useAppSelector((state) => state.issues);
-//
-// useEffect(() => {
-//     dispatch(fetchIssues());
-// }, [issues.currentIssue]);
-//
-// const dispatch = useDispatch();
-// console.log(issues);
-//
-//
-//
-// <div>
-//     App
-//     <br />
-//     <br />
-//     {issues.issueList.map((issue) => {
-//         return (
-//             <p>
-//                 {issue.id} {issue.title} {issue.optionNum}
-//             </p>
-//         );
-//     })}
-//     <br />
-//     <button onClick={() => dispatch(fetchIssues())}>Get</button>
-//     <button
-//         onClick={() =>
-//             dispatch(createIssue()).then(() => dispatch(fetchIssues()))
-//         }
-//     >
-//         ADD
-//     </button>
-// </div>

@@ -1,28 +1,16 @@
 /* FETCH */
 
-// import {deleteIssue} from "./services/issues";
-
 export const fetchFakeApi = (cb, params) => {
-  console.log('fetchFakeApi');
-  // console.log('dd', cb(params))
+  console.log('fetchFakeApi (fake-server)');
+  const randomDelay = Math.floor(Math.random() * 500);
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(cb(params));
-    }, 1500);
+    }, randomDelay);
   });
 };
 
-export const fetchOptions = (issueId) => {
-  return getOptionsByIssueId(issueId).map((option) => {
-    return { ...option, reasons_stata_data: [] };
-  });
-};
 
-export const fetchReasons = (optionId) => {
-  return getReasonsByIssueId(optionId).map((reason) => {
-    return { ...reason };
-  });
-};
 
 /* ISSUES */
 
@@ -61,7 +49,19 @@ const removeIssue = (id) => {
   localStorage.setItem('issues', JSON.stringify(issues));
 };
 
+const getIssueById = (id) => {
+  return getIssues().filter((issue) => issue.id == id);
+}
+
 /* OPTIONS */
+
+const fetchOptions = (issueId) => {
+  const issueData = { title: getIssueById(issueId)[0].title };
+  const optionsList = getOptionsByIssueId(issueId).map((option) => {
+    return { ...option, reasons_stata_data: [] };
+  });
+  return {issueData, optionsList};
+};
 
 const getOptions = () => {
   return JSON.parse(localStorage.getItem('options'));
@@ -72,10 +72,12 @@ const getOptionsByIssueId = (issueId) => {
   if (allOptions === null) {
     return [];
   }
-  return allOptions.filter((option) => option.issue_id === issueId);
+  return allOptions.filter((option) => option.issue_id == issueId);
 };
 
-export const createOption = (title, issueId) => {
+export const createOption = (payload) => {
+  const { title, issueId } = payload;
+
   let allOptions = getOptions();
 
   if (allOptions === null) {
@@ -91,15 +93,23 @@ export const createOption = (title, issueId) => {
 
   allOptions.push(newOption);
   localStorage.setItem('options', JSON.stringify(allOptions));
+  return optionId;
 };
 
+
 /* REASONS */
+
+export const fetchReasons = (optionIds) => {
+  // return getReasonsByOptionId(optionId).map((reason) => {
+    return optionIds.map((optionId) => ({ optionId, reasons: getReasonsByOptionId(optionId)}));
+  // });
+};
 
 const getReasons = () => {
   return JSON.parse(localStorage.getItem('reasons'));
 };
 
-const getReasonsByIssueId = (optionId) => {
+const getReasonsByOptionId = (optionId) => {
   let allReasons = getReasons();
   if (allReasons === null) {
     return [];
@@ -138,3 +148,10 @@ export const options = {
   create: createOption,
   delete: () => {},
 };
+
+export const reasons = {
+  get: fetchReasons,
+  create: createReason,
+  delete: () => {},
+};
+
