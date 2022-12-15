@@ -1,14 +1,31 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { createReason, fetchReasons } from '../../store/reasonsSlice';
+import {FormControl, TextField} from "@mui/material";
 
 
-const NewReason = () => {
+const NewReason = ({optionId}) => {
+    const [title, setTitle] = useState('')
+    const dispatch = useAppDispatch();
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(createReason({title, optionId}))
+        setTitle('');
+    }
     return (
-        <>
-            <p>input</p>
-        </>
+        <form onSubmit={handleSubmit}>
+            {/*<FormControl >*/}
+                <TextField
+                    variant='outlined'
+                    // label='Enter new reason'
+                    placeholder='Enter new reason'
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                />
+            {/*</FormControl>*/}
+        </form>
     )
+
 }
 
 const ReasonsList = ({ reasons }) => {
@@ -50,8 +67,7 @@ const Reasons = ({ optionId }) => {
     return (
         <>
             <ReasonsList reasons={reasonsList[0].reasons} />
-            <p>{optionId}</p>
-            <NewReason />
+            <NewReason optionId={optionId}/>
         </>
     )
 }

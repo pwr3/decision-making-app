@@ -117,7 +117,7 @@ const getReasonsByOptionId = (optionId) => {
   return allReasons.filter((reason) => reason.option_id === optionId);
 };
 
-export const createReason = (title, optionId) => {
+export const createReason = ({title, optionId}) => {
   let allReasons = getReasons();
 
   if (allReasons === null) {

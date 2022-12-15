@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from '../hooks';
 import { createIssue, fetchIssues } from '../store/issuesSlice';
-import {Box, Divider, List, ListItemButton, ListItemText, Chip, CircularProgress} from '@mui/material'
+import {Box, Divider, List, ListItemButton, ListItemText, Chip, CircularProgress, TextField} from '@mui/material'
 import { useNavigate } from "react-router-dom";
 
 const NewIssue = () => {
@@ -15,17 +15,14 @@ const NewIssue = () => {
             .then((res) => navigate('/issues/'+ res.payload));
     }
     return (
-        <Box>
-            <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
+                <TextField
+                    placeholder='Add new issue...'
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                />
+        </form>
 
-                    <input
-                        placeholder='Add new issue...'
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                    />
-
-            </form>
-        </Box>
     )
 }
 

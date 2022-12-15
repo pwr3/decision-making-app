@@ -9,7 +9,7 @@ import {
     AccordionSummary,
     Box,
     CircularProgress,
-    Skeleton,
+    Stack, TextField,
     Typography
 } from "@mui/material";
 import {fetchReasons} from "../store/reasonsSlice";
@@ -25,17 +25,16 @@ const NewOption = ({ issueId }) => {
         dispatch(createOption({title, issueId}))
     }
     return (
-        <Box>
-            <form onSubmit={handleSubmit}>
-                <>
-                    <input
-                        placeholder='Add new option...'
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                    />
-                </>
-            </form>
-        </Box>
+        <form onSubmit={handleSubmit}>
+            <>
+                <TextField
+                    variant='outlined'
+                    placeholder='Add new option...'
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                />
+            </>
+        </form>
     )
 }
 
@@ -52,8 +51,16 @@ const OptionsRow = ({option}) => {
     return (
         <>
             <Accordion TransitionProps={{ unmountOnExit: true }}>
-                <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                    <Typography>{option.title}</Typography>
+                <AccordionSummary xs={{color: 'green'}} aria-controls="panel1d-content" id="panel1d-header">
+                    <Stack
+                        direction='row'
+                        spacing={2}
+                        justifyContent='center'
+                        alignItems='flex-start'>
+                        <Typography>{option.title}</Typography>
+                        {/*<Typography>sssss</Typography>*/}
+                        {/*<Typography>nnnn</Typography>*/}
+                    </Stack>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Reasons optionId={option.id}/>
