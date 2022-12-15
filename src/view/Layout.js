@@ -1,65 +1,28 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { ChakraProvider, Container, Box, Flex } from "@chakra-ui/react";
 import IssuesPage from "./IssuesPage";
+import {Container, Stack, Box} from "@mui/material";
 
 
 const Layout = () => {
     return(
-        <ChakraProvider>
         <div>
-            <Container maxW='container.lg'>
-                <Flex>
-                    <Box w='50%' border='1px' p={6}>
+            <Container maxWidth='xl'>
+                <Stack
+                    direction='row'
+                    spacing={2}
+                    justifyContent='center'
+                    alignItems='flex-start'>
+                    <Box sx={{ width: '50%'}}>
                         <IssuesPage />
                     </Box>
-                    <Box w='50%' border='1px' p={6}>
+                    <Box sx={{ width: '50%'}}>
                         <Outlet />
                     </Box>
-                </Flex>
+                </Stack>
             </Container>
         </div>
-        </ChakraProvider>
     )
 }
 
 export default Layout;
-
-//
-// import { useAppSelector } from './hooks';
-// import { useDispatch } from 'react-redux';
-// import { createIssue, fetchIssues } from './store/issuesSlice';
-//
-//
-// const issues = useAppSelector((state) => state.issues);
-//
-// useEffect(() => {
-//     dispatch(fetchIssues());
-// }, [issues.currentIssue]);
-//
-// const dispatch = useDispatch();
-// console.log(issues);
-//
-//
-//
-// <div>
-//     App
-//     <br />
-//     <br />
-//     {issues.issueList.map((issue) => {
-//         return (
-//             <p>
-//                 {issue.id} {issue.title} {issue.optionNum}
-//             </p>
-//         );
-//     })}
-//     <br />
-//     <button onClick={() => dispatch(fetchIssues())}>Get</button>
-//     <button
-//         onClick={() =>
-//             dispatch(createIssue()).then(() => dispatch(fetchIssues()))
-//         }
-//     >
-//         ADD
-//     </button>
-// </div>

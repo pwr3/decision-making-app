@@ -99,9 +99,9 @@ export const createOption = (payload) => {
 
 /* REASONS */
 
-export const fetchReasons = (optionId) => {
+export const fetchReasons = (optionIds) => {
   // return getReasonsByOptionId(optionId).map((reason) => {
-    return getReasonsByOptionId(optionId);
+    return optionIds.map((optionId) => ({ optionId, reasons: getReasonsByOptionId(optionId)}));
   // });
 };
 

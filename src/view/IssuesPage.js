@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import {Box, Spinner, Center, FormControl, Input, LinkBox, LinkOverlay, Divider} from "@chakra-ui/react";
 import { useAppSelector, useAppDispatch } from '../hooks';
 import { createIssue, fetchIssues } from '../store/issuesSlice';
+import {Box, Divider, List, ListItemButton, ListItemText, Chip, CircularProgress} from '@mui/material'
 import { useNavigate } from "react-router-dom";
 
 const NewIssue = () => {
@@ -17,13 +17,13 @@ const NewIssue = () => {
     return (
         <Box>
             <form onSubmit={handleSubmit}>
-                <FormControl>
-                    <Input
+
+                    <input
                         placeholder='Add new issue...'
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
-                </FormControl>
+
             </form>
         </Box>
     )
@@ -31,8 +31,10 @@ const NewIssue = () => {
 
 const IssuesList = ({issues}) => {
     return (
-        <Box>
-            {issues.map((issue) => (<IssueRow issue={issue} key={issue.id} />))}
+        <Box sx={{ border: 1, borderColor: 'grey.400' }}>
+            <List>
+                {issues.map((issue) => (<IssueRow issue={issue} key={issue.id} />))}
+            </List>
         </Box>
     )
 }
@@ -40,9 +42,12 @@ const IssuesList = ({issues}) => {
 const IssueRow = ({issue}) => {
     return (
         <>
-        <LinkBox my={1} py={3} >
-            <LinkOverlay href='#'>{issue.title}</LinkOverlay> {issue.optionNum}
-        </LinkBox>
+        <ListItemButton>
+            <ListItemText>
+                {issue.title}
+            </ListItemText>
+            <Chip label={issue.optionNum} size='small'/>
+        </ListItemButton>
         <Divider />
         </>
     )
@@ -58,7 +63,7 @@ const IssuesPage = () => {
 
     return (
         <>
-            {issues.loading && <Center p={16}><Spinner /></Center>}
+            {issues.loading && <CircularProgress />}
             <IssuesList issues={issues.issueList}/>
             <NewIssue />
         </>

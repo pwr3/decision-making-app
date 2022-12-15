@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import { apiGetReasons, apiCreateReason } from "../services/reasons";
+import {fetchOptions} from "./optionsSlice";
 
 const initialState = {
     loading: false,
@@ -41,7 +42,6 @@ export const reasonsSlice = createSlice({
                 console.log('ADDED', action.payload);
                 // state.currentIssue = action.payload;
             })
-
     }
 
 });

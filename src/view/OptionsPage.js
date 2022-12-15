@@ -2,18 +2,18 @@ import React, {useEffect, useState} from "react";
 import { useAppSelector, useAppDispatch } from '../hooks';
 import { useParams } from "react-router-dom";
 import { createOption, fetchOptions } from "../store/optionsSlice";
+import Reasons from "./components/Reasons";
 import {
     Accordion,
-    AccordionButton,
-    AccordionIcon,
-    AccordionItem, AccordionPanel,
+    AccordionDetails,
+    AccordionSummary,
     Box,
-    Center,
-    FormControl, Heading,
-    Input,
-    Spinner
-} from "@chakra-ui/react";
-import Reasons from "./components/Reasons";
+    CircularProgress,
+    Skeleton,
+    Typography
+} from "@mui/material";
+import {fetchReasons} from "../store/reasonsSlice";
+
 
 
 const NewOption = ({ issueId }) => {
@@ -27,13 +27,13 @@ const NewOption = ({ issueId }) => {
     return (
         <Box>
             <form onSubmit={handleSubmit}>
-                <FormControl>
-                    <Input
+                <>
+                    <input
                         placeholder='Add new option...'
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
-                </FormControl>
+                </>
             </form>
         </Box>
     )
@@ -42,39 +42,45 @@ const NewOption = ({ issueId }) => {
 
 const OptionsList = ({options}) => {
     return (
-        <Box>
-            <Accordion>
-                {options.map((option) => (<OptionsRow option={option} key={option.id} />))}
-            </Accordion>
-        </Box>
+        <>
+            {options.map((option) => <OptionsRow option={option} key={option.id}/> )}
+        </>
     )
 }
 
 const OptionsRow = ({option}) => {
     return (
-        <AccordionItem>
-            <AccordionButton>
-                <AccordionIcon />
-                <>{option.title}</>
-            </AccordionButton>
-            <AccordionPanel>
-                <Reasons optionId={option.id}/>
-            </AccordionPanel>
-        </AccordionItem>
+        <>
+            <Accordion TransitionProps={{ unmountOnExit: true }}>
+                <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+                    <Typography>{option.title}</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <Reasons optionId={option.id}/>
+                </AccordionDetails>
+            </Accordion>
+
+        </>
     )
 }
 
 const OptionsPage = () => {
     const options = useAppSelector((state) => state.options);
-    const { issue_id } = useParams();
     const dispatch = useAppDispatch();
+    const { issue_id } = useParams();
+
+    const optionIds = (options) => (options.map((option) => (option.id)))
+
     useEffect(() => {
         dispatch(fetchOptions(issue_id))
+            .then((res) =>
+                dispatch(fetchReasons(optionIds(res.payload.optionsList))));
     }, [])
 
     return (
-        <>  {options.loading && <Center p={16}><Spinner /></Center>}
-            <Heading as='h2' size='md'>{options.issueData.title}</Heading>
+        <>
+            {options.loading && <CircularProgress />}
+            <h2>{options.issueData.title}</h2>
             <OptionsList options={options.optionsList} />
             <NewOption issueId={issue_id} />
         </>
