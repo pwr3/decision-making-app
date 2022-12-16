@@ -59,6 +59,7 @@ const IssuesPage = () => {
 
     useEffect(() => {
         dispatch(fetchIssues());
+        // dispatch({type: 'issues/test'})
     }, []);
 
     return (

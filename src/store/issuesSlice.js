@@ -26,9 +26,28 @@ export const issuesSlice = createSlice({
   name: 'issues',
   initialState,
   reducers: {
-      // createIssue:(state, action) => {
-      //     state.error = true
-      // }
+      fetch: (state) => {
+          state.loading = true;
+      },
+      fetchSuccess: (state, action) => {
+          state.loading = false;
+          state.issueList = action.payload;
+      },
+      fetchFailure: (state, action) => {
+          state.loading = false;
+          state.error = action.payload;
+      },
+      add: (state) => {
+          state.loading = true;
+      },
+      addSuccess: (state, action) => {
+          state.loading = false;
+          // state.issueList = action.payload;
+      },
+      addFailure: (state, action) => {
+          state.loading = false;
+          state.error = action.payload;
+      },
   },
   extraReducers: (builder) => {
     builder
