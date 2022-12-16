@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { useAppSelector, useAppDispatch } from '../hooks';
-import { useParams } from "react-router-dom";
-import { createOption, fetchOptions } from "../store/optionsSlice";
+import { useParams, useLocation } from "react-router-dom";
+import { add, fetch } from "../store/optionsSlice";
 import Reasons from "./components/Reasons";
 import {
     Accordion,
@@ -22,7 +22,7 @@ const NewOption = ({ issueId }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setTitle('');
-        dispatch(createOption({title, issueId}))
+        dispatch(add({title, issueId}))
     }
     return (
         <form onSubmit={handleSubmit}>
@@ -72,17 +72,19 @@ const OptionsRow = ({option}) => {
 }
 
 const OptionsPage = () => {
+    console.log('--> OptionsPage')
     const options = useAppSelector((state) => state.options);
     const dispatch = useAppDispatch();
     const { issue_id } = useParams();
+    const location = useLocation();
 
-    const optionIds = (options) => (options.map((option) => (option.id)))
+    // const optionIds = (options) => (options.map((option) => (option.id)))
 
     useEffect(() => {
-        dispatch(fetchOptions(issue_id))
-            .then((res) =>
-                dispatch(fetchReasons(optionIds(res.payload.optionsList))));
-    }, [])
+        dispatch(fetch(issue_id));
+            // .then((res) =>
+            //     dispatch(fetchReasons(optionIds(res.payload.optionsList))));
+    }, [location.pathname])
 
     return (
         <>

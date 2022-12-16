@@ -3,7 +3,7 @@ import { issuesSlice } from './issuesSlice';
 import { optionsSlice } from "./optionsSlice";
 import { reasonsSlice } from "./reasonsSlice";
 import createSagaMiddleware from 'redux-saga'
-import mySaga from "../sagas";
+import rootSaga from "../sagas";
 
 const saga = createSagaMiddleware();
 export const store = configureStore({
@@ -15,4 +15,4 @@ export const store = configureStore({
   middleware: [saga]
 });
 
-saga.run(mySaga);
+saga.run(rootSaga);

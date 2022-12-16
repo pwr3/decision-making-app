@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from '../hooks';
-import { createIssue, fetchIssues } from '../store/issuesSlice';
-import {Box, Divider, List, ListItemButton, ListItemText, Chip, CircularProgress, TextField} from '@mui/material'
-import { useNavigate, useLocation } from "react-router-dom";
+import { add, fetch } from '../store/issuesSlice';
+import { Box, Divider, List, ListItemButton,
+    ListItemText, Chip, CircularProgress,
+    TextField } from '@mui/material'
+import {NavLink, useNavigate} from "react-router-dom";
 
 const NewIssue = () => {
     const [ title, setTitle ] = useState('')
-    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const handleSubmit = (e) => {
         e.preventDefault();
         setTitle('');
-        dispatch(createIssue(title))
-            .then((res) => navigate('/issues/'+ res.payload));
+        dispatch(add(title));
     }
     return (
         <form onSubmit={handleSubmit}>
@@ -22,7 +22,6 @@ const NewIssue = () => {
                     onChange={(e) => setTitle(e.target.value)}
                 />
         </form>
-
     )
 }
 
@@ -39,12 +38,14 @@ const IssuesList = ({issues}) => {
 const IssueRow = ({issue}) => {
     return (
         <>
-        <ListItemButton>
-            <ListItemText>
-                {issue.title}
-            </ListItemText>
-            <Chip label={issue.optionNum} size='small'/>
-        </ListItemButton>
+            <NavLink to={'/issues/'+issue.id}>
+                <ListItemButton>
+                    <ListItemText>
+                        {issue.title}
+                    </ListItemText>
+                    <Chip label={issue.optionNum} size='small'/>
+                </ListItemButton>
+            </NavLink>
         <Divider />
         </>
     )
@@ -52,15 +53,14 @@ const IssueRow = ({issue}) => {
 
 const IssuesPage = () => {
     console.log('--> IssuesPage')
-    // const location = useLocation();
-    // console.log('loc', location.pathname);
+    const navigate = useNavigate();
     const issues = useAppSelector((state) => state.issues);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(fetchIssues());
-        // dispatch({type: 'issues/test'})
-    }, []);
+        dispatch(fetch());
+        issues.newIssueId && navigate('/issues/'+ issues.newIssueId);
+    }, [issues.newIssueId]);
 
     return (
         <>

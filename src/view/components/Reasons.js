@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { createReason, fetchReasons } from '../../store/reasonsSlice';
+import { add, fetch } from '../../store/reasonsSlice';
 import {FormControl, TextField} from "@mui/material";
 
 
@@ -9,7 +9,7 @@ const NewReason = ({optionId}) => {
     const dispatch = useAppDispatch();
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(createReason({title, optionId}))
+        dispatch(add({title, optionId}))
         setTitle('');
     }
     return (
@@ -48,25 +48,17 @@ const ReasonsRow = ({ reason }) => {
 const Reasons = ({ optionId }) => {
     const reasons = useAppSelector((state) => state.reasons);
     const dispatch = useAppDispatch();
-    const reasonsList = reasons.reasonsList.filter((reason) => reason.optionId == optionId);
-    // const reasonsList = reasons.reasonsList.map((reason) => {
-    // let reasonsList = [];
-    //     if (reason.optionId == optionId) {
-    //         return {...reason}
-    //     }
-    // })
-    // for(const reason of reasons.reasonsList) {
-    //     if (reason.optionId == optionId) {
-    //         reasonsList.push(reason.reasons[0])
-    //     }
-    // }
+    // const reasonsList = reasons.reasonsList.filter((reason) => reason.optionId == optionId);
+    console.log('reasons', reasons)
+
     useEffect(() => {
-        // dispatch(fetchReasons(optionId));
+        dispatch(fetch(optionId));
+
     }, [])
 
     return (
         <>
-            <ReasonsList reasons={reasonsList[0].reasons} />
+            {/*<ReasonsList reasons={reasonsList[0].reasons} />*/}
             <NewReason optionId={optionId}/>
         </>
     )
