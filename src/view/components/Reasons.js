@@ -4,12 +4,12 @@ import { add, fetch } from '../../store/reasonsSlice';
 import {FormControl, TextField} from "@mui/material";
 
 
-const NewReason = ({optionId}) => {
+const NewReason = ({optionId, issueId}) => {
     const [title, setTitle] = useState('')
     const dispatch = useAppDispatch();
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(add({title, optionId}))
+        dispatch(add({title, optionId, issueId}))
         setTitle('');
     }
     return (
@@ -45,21 +45,21 @@ const ReasonsRow = ({ reason }) => {
     )
 }
 
-const Reasons = ({ optionId }) => {
+const Reasons = ({ optionId, issueId }) => {
     const reasons = useAppSelector((state) => state.reasons);
     const dispatch = useAppDispatch();
-    // const reasonsList = reasons.reasonsList.filter((reason) => reason.optionId == optionId);
+    const reasonsList = reasons.reasonsList.filter((reason) => reason.optionId == optionId);
     console.log('reasons', reasons)
 
     useEffect(() => {
-        dispatch(fetch(optionId));
+        // dispatch(fetch(optionId));
 
     }, [])
 
     return (
         <>
-            {/*<ReasonsList reasons={reasonsList[0].reasons} />*/}
-            <NewReason optionId={optionId}/>
+            <ReasonsList reasons={reasonsList[0].reasons} />
+            <NewReason optionId={optionId} issueId={issueId}/>
         </>
     )
 }

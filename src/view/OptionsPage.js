@@ -7,13 +7,10 @@ import {
     Accordion,
     AccordionDetails,
     AccordionSummary,
-    Box,
     CircularProgress,
     Stack, TextField,
     Typography
 } from "@mui/material";
-import {fetchReasons} from "../store/reasonsSlice";
-
 
 
 const NewOption = ({ issueId }) => {
@@ -39,15 +36,15 @@ const NewOption = ({ issueId }) => {
 }
 
 
-const OptionsList = ({options}) => {
+const OptionsList = ({options, issueId}) => {
     return (
         <>
-            {options.map((option) => <OptionsRow option={option} key={option.id}/> )}
+            {options.map((option) => <OptionsRow option={option} issueId={issueId} key={option.id}/> )}
         </>
     )
 }
 
-const OptionsRow = ({option}) => {
+const OptionsRow = ({option, issueId}) => {
     return (
         <>
             <Accordion TransitionProps={{ unmountOnExit: true }}>
@@ -63,7 +60,7 @@ const OptionsRow = ({option}) => {
                     </Stack>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <Reasons optionId={option.id}/>
+                    <Reasons optionId={option.id} issueId={issueId}/>
                 </AccordionDetails>
             </Accordion>
 
@@ -78,19 +75,15 @@ const OptionsPage = () => {
     const { issue_id } = useParams();
     const location = useLocation();
 
-    // const optionIds = (options) => (options.map((option) => (option.id)))
-
     useEffect(() => {
         dispatch(fetch(issue_id));
-            // .then((res) =>
-            //     dispatch(fetchReasons(optionIds(res.payload.optionsList))));
     }, [location.pathname])
 
     return (
         <>
             {options.loading && <CircularProgress />}
             <h2>{options.issueData.title}</h2>
-            <OptionsList options={options.optionsList} />
+            <OptionsList options={options.optionsList} issueId={issue_id}/>
             <NewOption issueId={issue_id} />
         </>
     )

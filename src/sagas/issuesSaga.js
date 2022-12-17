@@ -21,6 +21,8 @@ function* createIssue(action) {
 
 export default function* issuesSaga() {
     yield takeEvery('issues/fetch', fetchIssues);
+    yield takeEvery('options/addSuccess', fetchIssues);
+    yield takeEvery('reasons/addSuccess', fetchIssues);
     yield takeEvery('issues/add', createIssue);
 
 }
