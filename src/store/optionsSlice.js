@@ -13,6 +13,8 @@ export const optionsSlice = createSlice({
     reducers: {
         fetch: (state) => {
             state.loading = true;
+            state.issueData = { title: '' };
+            state.optionsList = [];
         },
         fetchSuccess: (state, action) => {
             state.loading = false;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from '../hooks';
 import { add, fetch } from '../store/issuesSlice';
 import { Box, Divider, List, ListItemButton,
-    ListItemText, Chip, CircularProgress,
+    ListItemText, Chip, CircularProgress, Stack,
     TextField } from '@mui/material'
 import {NavLink, useNavigate} from "react-router-dom";
 
@@ -15,13 +15,15 @@ const NewIssue = () => {
         dispatch(add(title));
     }
     return (
-        <form onSubmit={handleSubmit}>
-                <TextField
-                    placeholder='Add new issue...'
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                />
-        </form>
+        <Box sx={{ py: 4 }}>
+            <form onSubmit={handleSubmit}>
+                    <TextField sx={{ width: '100%' }}
+                        placeholder='Add new issue...'
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
+            </form>
+        </Box>
     )
 }
 
@@ -38,7 +40,9 @@ const IssuesList = ({issues}) => {
 const IssueRow = ({issue}) => {
     return (
         <>
-            <NavLink to={'/issues/'+issue.id}>
+            <NavLink style={({ isActive }) =>
+                isActive ? { textDecoration: "underline" } : undefined
+            } to={'/issues/'+issue.id}>
                 <ListItemButton>
                     <ListItemText>
                         {issue.title}
@@ -64,9 +68,18 @@ const IssuesPage = () => {
 
     return (
         <>
-            {issues.loading && <CircularProgress />}
-            <IssuesList issues={issues.issueList}/>
-            <NewIssue />
+            { issues.loading ?
+                <Stack
+                    justifyContent="center"
+                    alignItems="center" >
+                    <CircularProgress sx={{ align: 'center' }} />
+                </Stack>
+ :
+                <>
+                    <IssuesList issues={issues.issueList}/>
+                    <NewIssue />
+                </>
+            }
         </>
     )
 }

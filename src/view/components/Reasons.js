@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, { useState } from "react";
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { add, fetch } from '../../store/reasonsSlice';
-import {FormControl, TextField} from "@mui/material";
+import {Box, TextField} from "@mui/material";
 
 
 const NewReason = ({optionId, issueId}) => {
@@ -13,23 +13,24 @@ const NewReason = ({optionId, issueId}) => {
         setTitle('');
     }
     return (
+        <Box xs={{ p: 20 }}>
         <form onSubmit={handleSubmit}>
             {/*<FormControl >*/}
-                <TextField
+                <TextField xs={{ width: '100%'}}
                     variant='outlined'
                     // label='Enter new reason'
-                    placeholder='Enter new reason'
+                    placeholder='Enter new reason...'
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                 />
             {/*</FormControl>*/}
         </form>
+        </Box>
     )
 
 }
 
 const ReasonsList = ({ reasons }) => {
-    console.log('-', reasons)
     return (
         <>
             {reasons.map((reason) => <ReasonsRow reason={reason} key={reason.id} />)}
@@ -49,18 +50,12 @@ const Reasons = ({ optionId, issueId }) => {
     const reasons = useAppSelector((state) => state.reasons);
     const dispatch = useAppDispatch();
     const reasonsList = reasons.reasonsList.filter((reason) => reason.optionId == optionId);
-    console.log('reasons', reasons)
-
-    useEffect(() => {
-        // dispatch(fetch(optionId));
-
-    }, [])
 
     return (
-        <>
+        <Box>
             <ReasonsList reasons={reasonsList[0].reasons} />
             <NewReason optionId={optionId} issueId={issueId}/>
-        </>
+        </Box>
     )
 }
 
