@@ -10,13 +10,14 @@ const Layout = () => {
     return(
         <div>
             <Stack
+                sx={{ mx: 6 }}
                 direction='row'
                 justifyContent='center'
                 alignItems='flex-start'>
-                <Box sx={{ width: '50%'}}>
+                <Box sx={{ width: '45%', px: 2 }}>
                     <IssuesPage />
                 </Box>
-                <Box sx={{ width: '50%',  px: 4,}}>
+                <Box sx={{ width: '55%',  px: 2 }}>
                     <Outlet />
                 </Box>
             </Stack>

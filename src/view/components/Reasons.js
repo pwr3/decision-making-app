@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import { add, fetch } from '../../store/reasonsSlice';
-import {Box, TextField} from "@mui/material";
+import {Box, TextField, Typography} from "@mui/material";
 
 
 const NewReason = ({optionId, issueId}) => {

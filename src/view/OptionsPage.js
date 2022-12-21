@@ -2,8 +2,8 @@ import React, {useEffect, useState} from "react";
 import { useAppSelector, useAppDispatch } from '../hooks';
 import { useParams, useLocation } from "react-router-dom";
 import { add, fetch } from "../store/optionsSlice";
-import { CircularProgress, TextField, Box } from "@mui/material";
-import MyAccordion from './components/Accordion'
+import {CircularProgress, TextField, Box, Typography} from "@mui/material";
+import CustomAccordion from './components/CustomAccordion'
 import Reasons from "./components/Reasons";
 
 
@@ -41,9 +41,9 @@ const OptionsList = ({options, issueId}) => {
 const OptionsRow = ({option, issueId}) => {
     return (
         <>
-            <MyAccordion option={option}>
+            <CustomAccordion option={option}>
                 <Reasons optionId={option.id} issueId={issueId}/>
-            </MyAccordion>
+            </CustomAccordion>
         </>
     )
 }
@@ -62,7 +62,12 @@ const OptionsPage = () => {
     return (
         <>
             {options.loading && <CircularProgress />}
-            <h2>{options.issueData.title}</h2>
+            <Box sx={{ py: 3, pl: 2 }}>
+                <Typography variant='h5' component='h5'>{options.issueData.title}</Typography>
+            </Box>
+            <Box sx={{ pb: 2, pl: 2 }}>
+                <Typography>Options:</Typography>
+            </Box>
             <OptionsList options={options.optionsList} issueId={issue_id}/>
             <NewOption issueId={issue_id} />
         </>

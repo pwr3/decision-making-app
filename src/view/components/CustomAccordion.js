@@ -37,7 +37,7 @@ const MuiAccordionDetails = styled(AccordionDetails)(({ theme }) => ({
     // borderTop: '1px solid rgba(0, 0, 0, .125)',
 }))
 
-const MyAccordion = ({ children, option }) => {
+const CustomAccordion = ({ children, option }) => {
     return (
         <MuiAccordion square>
             <MuiAccordionSummary expandIcon={<ArrowForwardIosIcon sx={{ fontSize: '0.9rem' }} /> }aria-controls='panel1d-content' id='panel1d-header'>
@@ -51,4 +51,4 @@ const MyAccordion = ({ children, option }) => {
 }
 
 
-export default MyAccordion;
+export default CustomAccordion;

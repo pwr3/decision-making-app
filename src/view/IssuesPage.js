@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from '../hooks';
 import { add, fetch } from '../store/issuesSlice';
-import { Box, Divider, List, ListItemButton,
+import {
+    Box, Divider, List, ListItemButton,
     ListItemText, Chip, CircularProgress, Stack,
-    TextField } from '@mui/material'
-import {NavLink, useNavigate} from "react-router-dom";
+    TextField, Typography
+} from '@mui/material'
+import { useNavigate } from "react-router-dom";
+import CustomList from "./components/CustomList";
 
 const NewIssue = () => {
     const [ title, setTitle ] = useState('')
@@ -29,31 +32,11 @@ const NewIssue = () => {
 
 const IssuesList = ({issues}) => {
     return (
-        <Box sx={{ border: 1, borderColor: 'grey.400' }}>
-            <List>
-                {issues.map((issue) => (<IssueRow issue={issue} key={issue.id} />))}
-            </List>
-        </Box>
+        <CustomList issues={issues} />
     )
 }
 
-const IssueRow = ({issue}) => {
-    return (
-        <>
-            <NavLink style={({ isActive }) =>
-                isActive ? { textDecoration: "underline" } : undefined
-            } to={'/issues/'+issue.id}>
-                <ListItemButton>
-                    <ListItemText>
-                        {issue.title}
-                    </ListItemText>
-                    <Chip label={issue.optionNum} size='small'/>
-                </ListItemButton>
-            </NavLink>
-        <Divider />
-        </>
-    )
-}
+
 
 const IssuesPage = () => {
     console.log('--> IssuesPage')
@@ -73,9 +56,11 @@ const IssuesPage = () => {
                     justifyContent="center"
                     alignItems="center" >
                     <CircularProgress sx={{ align: 'center' }} />
-                </Stack>
- :
+                </Stack> :
                 <>
+                    <Box sx={{ py: 3, pl: 2 }}>
+                        <Typography variant='h5' component='h5'>ISSUES 🙄</Typography>
+                    </Box>
                     <IssuesList issues={issues.issueList}/>
                     <NewIssue />
                 </>
