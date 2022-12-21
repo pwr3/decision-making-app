@@ -41,7 +41,7 @@ const ReasonsList = ({ reasons }) => {
 const ReasonsRow = ({ reason }) => {
     return (
         <>
-            <p>{reason.title}</p>
+            <p>- {reason.title}</p>
         </>
     )
 }

@@ -2,15 +2,9 @@ import React, {useEffect, useState} from "react";
 import { useAppSelector, useAppDispatch } from '../hooks';
 import { useParams, useLocation } from "react-router-dom";
 import { add, fetch } from "../store/optionsSlice";
+import { CircularProgress, TextField, Box } from "@mui/material";
+import MyAccordion from './components/Accordion'
 import Reasons from "./components/Reasons";
-import {
-    Accordion,
-    AccordionDetails,
-    AccordionSummary,
-    CircularProgress,
-    Stack, TextField,
-    Typography, Box
-} from "@mui/material";
 
 
 const NewOption = ({ issueId }) => {
@@ -47,15 +41,9 @@ const OptionsList = ({options, issueId}) => {
 const OptionsRow = ({option, issueId}) => {
     return (
         <>
-            <Accordion elevation={1} TransitionProps={{ unmountOnExit: true }}>
-                <AccordionSummary aria-controls='panel1d-content' id='panel1d-header'>
-                    <Typography>{option.title}</Typography>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <Reasons optionId={option.id} issueId={issueId}/>
-                </AccordionDetails>
-            </Accordion>
-
+            <MyAccordion option={option}>
+                <Reasons optionId={option.id} issueId={issueId}/>
+            </MyAccordion>
         </>
     )
 }
