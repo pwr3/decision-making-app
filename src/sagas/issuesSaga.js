@@ -1,5 +1,5 @@
-import {takeEvery, put, call, all} from 'redux-saga/effects'
-import {apiCreateIssue, apiGetIssues } from "../services/issues";
+import {takeEvery, put } from 'redux-saga/effects'
+import { apiCreateIssue, apiGetIssues } from "../services/issues";
 
 function* fetchIssues() {
     try {

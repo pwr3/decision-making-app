@@ -5,8 +5,6 @@ import { store } from './store/index';
 import App from './App'
 import './style.css'
 
-console.log('process: ', process.env.NODE_ENV);
-
 ReactDOM.createRoot(document.getElementById('root')).render(
       <Provider store={store}>
             <App />

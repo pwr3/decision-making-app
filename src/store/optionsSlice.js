@@ -26,7 +26,6 @@ export const optionsSlice = createSlice({
         },
         addSuccess: (state, action) => {
             state.loading = false;
-            // state.newIssueId = action.payload
         },
     },
 });

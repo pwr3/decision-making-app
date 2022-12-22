@@ -1,7 +1,6 @@
 /* FETCH */
 
 export const fetchFakeApi = (cb, params) => {
-  console.log('fetchFakeApi (fake-server)');
   const randomDelay = Math.floor(Math.random() * 500);
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -11,14 +10,12 @@ export const fetchFakeApi = (cb, params) => {
 };
 
 
-
 /* ISSUES */
 
 const getIssues = () => {
   return JSON.parse(localStorage.getItem('issues'));
 };
 const fetchIssues = () => {
-  // пускай выдаёт промис, может с рандомной задержкой
   const issues = getIssues();
   if (issues === null) {
     return [];
@@ -135,7 +132,7 @@ export const createReason = ({title, optionId}) => {
   localStorage.setItem('reasons', JSON.stringify(allReasons));
 };
 
-/* helper functions */
+/* helpers */
 
 export const issues = {
   get: fetchIssues,

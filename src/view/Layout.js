@@ -1,12 +1,9 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import IssuesPage from "./IssuesPage";
 import { Stack, Box } from "@mui/material";
-
-
+import IssuesPage from "./IssuesPage";
 
 const Layout = () => {
-    console.log('--> Layout')
     return(
         <div>
             <Stack

@@ -2,8 +2,6 @@ import React from "react";
 import {Accordion, AccordionSummary, AccordionDetails, styled, Typography} from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-
-
 const MuiAccordion = styled(Accordion)(() => ({
     border: '1px solid #e5e5e5',
     boxShadow: 'none',
@@ -25,22 +23,19 @@ const MuiAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
         marginLeft: theme.spacing(1.5),
     },
     '& .MuiAccordionSummary-content.Mui-expanded': {
-        // backgroundColor: 'red',
         marginLeft: theme.spacing(1.5),
-        // margin-left:
-        // marginLeft: theme.spacing(1.5),
+
     }
 }));
 
 const MuiAccordionDetails = styled(AccordionDetails)(({ theme }) => ({
-    // padding: theme.spacing(2),
-    // borderTop: '1px solid rgba(0, 0, 0, .125)',
+
 }))
 
 const CustomAccordion = ({ children, option }) => {
     return (
         <MuiAccordion square>
-            <MuiAccordionSummary expandIcon={<ArrowForwardIosIcon sx={{ fontSize: '0.9rem' }} /> }aria-controls='panel1d-content' id='panel1d-header'>
+            <MuiAccordionSummary expandIcon={<ArrowForwardIosIcon sx={{ fontSize: '0.9rem' }} /> } aria-controls='panel1d-content' id='panel1d-header'>
                 <Typography>{option.title}</Typography>
             </MuiAccordionSummary>
             <MuiAccordionDetails>
@@ -49,6 +44,5 @@ const CustomAccordion = ({ children, option }) => {
         </MuiAccordion>
     )
 }
-
 
 export default CustomAccordion;

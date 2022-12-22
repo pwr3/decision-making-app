@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { add, fetch } from '../../store/reasonsSlice';
-import {Box, TextField, Typography} from "@mui/material";
+import { add } from '../../store/reasonsSlice';
+import { Box, TextField } from "@mui/material";
 
 
-const NewReason = ({optionId, issueId}) => {
+const NewReason = ({ optionId, issueId }) => {
     const [title, setTitle] = useState('')
     const dispatch = useAppDispatch();
     const handleSubmit = (e) => {
@@ -15,15 +15,12 @@ const NewReason = ({optionId, issueId}) => {
     return (
         <Box xs={{ p: 20 }}>
         <form onSubmit={handleSubmit}>
-            {/*<FormControl >*/}
                 <TextField xs={{ width: '100%'}}
                     variant='outlined'
-                    // label='Enter new reason'
                     placeholder='Enter new reason...'
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                 />
-            {/*</FormControl>*/}
         </form>
         </Box>
     )
@@ -33,7 +30,7 @@ const NewReason = ({optionId, issueId}) => {
 const ReasonsList = ({ reasons }) => {
     return (
         <>
-            {reasons.map((reason) => <ReasonsRow reason={reason} key={reason.id} />)}
+            { reasons.map((reason) => <ReasonsRow reason={reason} key={reason.id} />) }
         </>
     )
 }
@@ -41,7 +38,7 @@ const ReasonsList = ({ reasons }) => {
 const ReasonsRow = ({ reason }) => {
     return (
         <>
-            <p>- {reason.title}</p>
+            <p>- { reason.title }</p>
         </>
     )
 }
@@ -53,8 +50,8 @@ const Reasons = ({ optionId, issueId }) => {
 
     return (
         <Box>
-            <ReasonsList reasons={reasonsList[0].reasons} />
-            <NewReason optionId={optionId} issueId={issueId}/>
+            <ReasonsList reasons={ reasonsList[0].reasons } />
+            <NewReason optionId={ optionId } issueId={ issueId }/>
         </Box>
     )
 }
