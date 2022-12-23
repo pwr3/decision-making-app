@@ -13,6 +13,11 @@ export const store = configureStore({
         reasons: reasonsSlice.reducer,
     },
     middleware: [saga],
+    devTools:
+        (process.env.NODE_ENV !== "production" &&
+            typeof window !== "undefined" &&
+            true) ||
+        false,
 });
 
 saga.run(rootSaga);
