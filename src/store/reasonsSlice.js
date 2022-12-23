@@ -1,13 +1,13 @@
-import {createSlice} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     loading: false,
     error: false,
-    reasonsList: []
+    reasonsList: [],
 };
 
 export const reasonsSlice = createSlice({
-    name: 'reasons',
+    name: "reasons",
     initialState,
     reducers: {
         fetch: (state) => {

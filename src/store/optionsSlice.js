@@ -1,24 +1,24 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     loading: false,
     error: false,
-    issueData: { title: '' },
-    optionsList: []
+    issueData: { title: "" },
+    optionsList: [],
 };
 
 export const optionsSlice = createSlice({
-    name: 'options',
+    name: "options",
     initialState,
     reducers: {
         fetch: (state) => {
             state.loading = true;
-            state.issueData = { title: '' };
+            state.issueData = { title: "" };
             state.optionsList = [];
         },
         fetchSuccess: (state, action) => {
             state.loading = false;
-            state.issueData = action.payload.issueData
+            state.issueData = action.payload.issueData;
             state.optionsList = action.payload.optionsList;
         },
         add: (state) => {

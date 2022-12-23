@@ -1,59 +1,62 @@
 import React, { useState } from "react";
-import { useAppSelector, useAppDispatch } from '../../hooks';
-import { add } from '../../store/reasonsSlice';
+import { useAppSelector, useAppDispatch } from "../../hooks";
+import { add } from "../../store/reasonsSlice";
 import { Box, TextField } from "@mui/material";
 
-
 const NewReason = ({ optionId, issueId }) => {
-    const [title, setTitle] = useState('')
+    const [title, setTitle] = useState("");
     const dispatch = useAppDispatch();
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(add({title, optionId, issueId}))
-        setTitle('');
-    }
+        dispatch(add({ title, optionId, issueId }));
+        setTitle("");
+    };
     return (
         <Box xs={{ p: 20 }}>
-        <form onSubmit={handleSubmit}>
-                <TextField xs={{ width: '100%'}}
-                    variant='outlined'
-                    placeholder='Enter new reason...'
+            <form onSubmit={handleSubmit}>
+                <TextField
+                    xs={{ width: "100%" }}
+                    variant="outlined"
+                    placeholder="Enter new reason..."
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                 />
-        </form>
+            </form>
         </Box>
-    )
-
-}
+    );
+};
 
 const ReasonsList = ({ reasons }) => {
     return (
         <>
-            { reasons.map((reason) => <ReasonsRow reason={reason} key={reason.id} />) }
+            {reasons.map((reason) => (
+                <ReasonsRow reason={reason} key={reason.id} />
+            ))}
         </>
-    )
-}
+    );
+};
 
 const ReasonsRow = ({ reason }) => {
     return (
         <>
-            <p>- { reason.title }</p>
+            <p>- {reason.title}</p>
         </>
-    )
-}
+    );
+};
 
 const Reasons = ({ optionId, issueId }) => {
     const reasons = useAppSelector((state) => state.reasons);
     const dispatch = useAppDispatch();
-    const reasonsList = reasons.reasonsList.filter((reason) => reason.optionId == optionId);
+    const reasonsList = reasons.reasonsList.filter(
+        (reason) => reason.optionId == optionId
+    );
 
     return (
         <Box>
-            <ReasonsList reasons={ reasonsList[0].reasons } />
-            <NewReason optionId={ optionId } issueId={ issueId }/>
+            <ReasonsList reasons={reasonsList[0].reasons} />
+            <NewReason optionId={optionId} issueId={issueId} />
         </Box>
-    )
-}
+    );
+};
 
 export default Reasons;

@@ -5,21 +5,19 @@ import OptionsPage from "./view/OptionsPage";
 
 const routes = createBrowserRouter([
     {
-        path: '/',
+        path: "/",
         element: <Layout />,
         errorElement: <>Not Found!</>,
         children: [
             {
-                path: 'issues/:issue_id',
-                element: <OptionsPage />
-            }
-        ]
+                path: "issues/:issue_id",
+                element: <OptionsPage />,
+            },
+        ],
     },
-])
+]);
 const App = () => {
-    return(
-        <RouterProvider router={routes}></RouterProvider>
-    )
-}
+    return <RouterProvider router={routes}></RouterProvider>;
+};
 
 export default App;
