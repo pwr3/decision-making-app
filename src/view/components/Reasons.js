@@ -12,10 +12,10 @@ const NewReason = ({ optionId, issueId }) => {
         setTitle("");
     };
     return (
-        <Box xs={{ p: 20 }}>
+        <Box>
             <form onSubmit={handleSubmit}>
                 <TextField
-                    xs={{ width: "100%" }}
+                    sx={{ width: "100%" }}
                     variant="outlined"
                     placeholder="Enter new reason..."
                     value={title}
@@ -28,19 +28,19 @@ const NewReason = ({ optionId, issueId }) => {
 
 const ReasonsList = ({ reasons }) => {
     return (
-        <>
+        <Box sx={{ py: 2}}>
             {reasons.map((reason) => (
                 <ReasonsRow reason={reason} key={reason.id} />
             ))}
-        </>
+        </Box>
     );
 };
 
 const ReasonsRow = ({ reason }) => {
     return (
-        <>
-            <p>- {reason.title}</p>
-        </>
+        <Box sx={{py: 1}}>
+            - {reason.title}
+        </Box>
     );
 };
 
@@ -52,7 +52,7 @@ const Reasons = ({ optionId, issueId }) => {
     );
 
     return (
-        <Box>
+        <Box sx={{px: 3, pb: 3}}>
             <ReasonsList reasons={reasonsList[0].reasons} />
             <NewReason optionId={optionId} issueId={issueId} />
         </Box>
