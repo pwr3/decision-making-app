@@ -5,32 +5,29 @@ import IssuesPage from "./IssuesPage";
 
 const Layout = () => {
     const location = useLocation();
-    console.log(location)
+    let issuesPanel = { width: "45%", px: 2 }
+    let optionsPanel =  { width: "55%", px: 2 }
+
+    if (location.pathname === '/') {
+        issuesPanel.width = "55%"
+        optionsPanel = { display: 'none' }
+    }
+
     return (
         <div>
-            {(location.pathname === '/') ? <Stack
-                sx={{ mx: 6 }}
-                direction="row"
-                justifyContent="center"
-                alignItems="flex-start"
-            >
-                <Box sx={{ width: "55%", px: 2 }}>
-                    <IssuesPage />
-                </Box>
-            </Stack> :
             <Stack
                 sx={{ mx: 6 }}
                 direction="row"
                 justifyContent="center"
                 alignItems="flex-start"
             >
-                <Box sx={{ width: "45%", px: 2 }}>
+                <Box sx={issuesPanel}>
                     <IssuesPage />
                 </Box>
-                <Box sx={{ width: "55%", px: 2 }}>
+                <Box sx={optionsPanel}>
                     <Outlet />
                 </Box>
-            </Stack> }
+            </Stack>
         </div>
     );
 };
