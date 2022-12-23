@@ -5,12 +5,12 @@ import IssuesPage from "./IssuesPage";
 
 const Layout = () => {
     const location = useLocation();
-    let issuesPanel = { width: "45%", px: 2 }
-    let optionsPanel =  { width: "55%", px: 2 }
+    let issuesPanel = { width: "45%", px: 2 };
+    let optionsPanel = { width: "55%", px: 2 };
 
-    if (location.pathname === '/') {
-        issuesPanel.width = "55%"
-        optionsPanel = { display: 'none' }
+    if (location.pathname === "/") {
+        issuesPanel.width = "55%";
+        optionsPanel = { display: "none" };
     }
 
     return (
