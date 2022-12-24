@@ -115,7 +115,7 @@ const getReasonsByOptionId = (optionId) => {
     return allReasons.filter((reason) => reason.option_id === optionId);
 };
 
-export const createReason = ({ title, optionId }) => {
+export const createReason = ({ title, optionId, reasonTypeId }) => {
     let allReasons = getReasons();
 
     if (allReasons === null) {
@@ -127,11 +127,35 @@ export const createReason = ({ title, optionId }) => {
     if (allReasons.length !== 0) {
         reasonId = parseInt(allReasons[allReasons.length - 1].id) + 1;
     }
-    const newReason = { id: reasonId, title, option_id: optionId };
+
+    const newReason = {
+        id: reasonId,
+        title,
+        option_id: optionId,
+        reason_type_id: reasonTypeId,
+    };
 
     allReasons.push(newReason);
     localStorage.setItem("reasons", JSON.stringify(allReasons));
 };
+
+const reasonType = [
+    {
+        id: 1,
+        name: "Positive",
+        value: 1,
+    },
+    {
+        id: 2,
+        name: "Negative",
+        value: -1,
+    },
+    {
+        id: 3,
+        name: "Unclear",
+        value: 0,
+    },
+];
 
 /* helpers */
 

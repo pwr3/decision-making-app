@@ -3,8 +3,10 @@ import {
     Accordion,
     AccordionSummary,
     AccordionDetails,
+    Box,
     styled,
     Typography,
+    Stack,
 } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
@@ -47,7 +49,18 @@ const CustomAccordion = ({ children, option }) => {
                 aria-controls="panel1d-content"
                 id="panel1d-header"
             >
-                <Typography>{option.title}</Typography>
+                <Stack
+                    sx={{ width: "100%", backgroundColor: "red" }}
+                    direction="row"
+                    spacing={2}
+                    justifyContent="space-between"
+                >
+                    <Typography>{option.title}</Typography>
+                    <Stack direction="row" spacing={2}>
+                        <Box>One</Box>
+                        <Box>Two</Box>
+                    </Stack>
+                </Stack>
             </MuiAccordionSummary>
             <MuiAccordionDetails>{children}</MuiAccordionDetails>
         </MuiAccordion>
