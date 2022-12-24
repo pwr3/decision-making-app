@@ -24,6 +24,13 @@ const MuiList = styled(List)(() => ({
 
 const MuiListItem = styled(ListItem)(() => ({
     padding: 0,
+    "& .active": {
+        fontWeight: 900,
+        backgroundColor: "#f8f8f8",
+        "& .MuiTypography-root": {
+            fontWeight: 600,
+        },
+    },
 }));
 
 const MuiListItemButton = styled(ListItemButton)(() => ({}));

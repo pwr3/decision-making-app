@@ -28,7 +28,7 @@ const NewReason = ({ optionId, issueId }) => {
 
 const ReasonsList = ({ reasons }) => {
     return (
-        <Box sx={{ py: 2}}>
+        <Box sx={{ py: 2 }}>
             {reasons.map((reason) => (
                 <ReasonsRow reason={reason} key={reason.id} />
             ))}
@@ -37,11 +37,7 @@ const ReasonsList = ({ reasons }) => {
 };
 
 const ReasonsRow = ({ reason }) => {
-    return (
-        <Box sx={{py: 1}}>
-            - {reason.title}
-        </Box>
-    );
+    return <Box sx={{ py: 1 }}>- {reason.title}</Box>;
 };
 
 const Reasons = ({ optionId, issueId }) => {
@@ -52,7 +48,7 @@ const Reasons = ({ optionId, issueId }) => {
     );
 
     return (
-        <Box sx={{px: 3, pb: 3}}>
+        <Box sx={{ px: 3, pb: 3 }}>
             <ReasonsList reasons={reasonsList[0].reasons} />
             <NewReason optionId={optionId} issueId={issueId} />
         </Box>

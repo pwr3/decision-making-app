@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-const MuiAccordion = styled(Accordion)(({theme}) => ({
+const MuiAccordion = styled(Accordion)(({ theme }) => ({
     border: "1px solid #e5e5e5",
     boxShadow: "none",
     // "&:not(:last-child)": {
@@ -30,16 +30,13 @@ const MuiAccordionSummary = styled(AccordionSummary)(({ theme }) => ({
     },
     "& .MuiAccordionSummary-content.Mui-expanded": {
         marginLeft: theme.spacing(1.5),
-
-
     },
 }));
 
 const MuiAccordionDetails = styled(AccordionDetails)(() => ({
-    padding: 0
+    padding: 0,
     // paddingLeft: 0,
     // paddingTop: 0,
-
 }));
 
 const CustomAccordion = ({ children, option }) => {
