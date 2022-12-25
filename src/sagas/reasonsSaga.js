@@ -11,7 +11,6 @@ function* fetchReasons(action) {
 function* createReason(action) {
     try {
         const response = yield apiCreateReason(action.payload);
-        console.log(action.payload);
         yield put({
             type: "reasons/addSuccess",
             payload: action.payload.issueId,

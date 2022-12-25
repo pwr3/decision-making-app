@@ -50,15 +50,22 @@ const CustomAccordion = ({ children, option }) => {
                 id="panel1d-header"
             >
                 <Stack
-                    sx={{ width: "100%", backgroundColor: "red" }}
+                    sx={{ width: "100%" }}
                     direction="row"
                     spacing={2}
                     justifyContent="space-between"
                 >
                     <Typography>{option.title}</Typography>
-                    <Stack direction="row" spacing={2}>
-                        <Box>One</Box>
-                        <Box>Two</Box>
+                    <Stack
+                        direction="row"
+                        justifyContent="flex-end"
+                        alignItems="center"
+                        spacing={0.5}
+                    >
+                        <Typography variant="caption" sx={{ mt: ".3rem" }}>
+                            {option.score * 100}%
+                        </Typography>
+                        <Box>👍</Box>
                     </Stack>
                 </Stack>
             </MuiAccordionSummary>

@@ -51,10 +51,30 @@ const getIssueById = (id) => {
 
 /* OPTIONS */
 
+const countOptionScore = (optionId) => {
+    let count = 0;
+    let value = 0;
+    const reasons = getReasonsByOptionId(optionId);
+
+    if (reasons.length === 0) {
+        return "0";
+    }
+
+    reasons.forEach((reason, id) => {
+        count++;
+        if (reason.reason_type_id === "1") {
+            value++;
+        } else if (reason.reason_type_id === "2") {
+            value--;
+        }
+    });
+    return +value / +count;
+};
+
 const fetchOptions = (issueId) => {
     const issueData = { title: getIssueById(issueId)[0].title };
     const optionsList = getOptionsByIssueId(issueId).map((option) => {
-        return { ...option, reasons_stata_data: [] };
+        return { ...option, score: countOptionScore(option.id) };
     });
     return { issueData, optionsList };
 };
