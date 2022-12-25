@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../hooks";
 import { add, fetch } from "../store/issuesSlice";
 import {
-    Box,
+    Box, Button,
     CircularProgress,
     Stack,
     TextField,
@@ -22,13 +22,21 @@ const NewIssue = () => {
     return (
         <Box sx={{ py: 4 }}>
             <form onSubmit={handleSubmit}>
-                <TextField
-                    sx={{ width: "100%" }}
-                    placeholder="Add new issue..."
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                />
+                <Typography sx={{ color: '#919191', my: 1}} variant="caption" display="block" gutterBottom>
+                    Please provide your issue title
+                </Typography>
+                <Stack direction='row' spacing={1}>
+                    <TextField
+                        sx={{ width: "100%" }}
+                        placeholder="Add new issue..."
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
+                    <Button sx={{ px: 5 }} type='submit' variant="contained" disableElevation>Add</Button>
+                </Stack>
+
             </form>
+
         </Box>
     );
 };

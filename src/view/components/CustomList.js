@@ -39,7 +39,7 @@ const Item = ({ issue }) => {
     return (
         <MuiListItem>
             <MuiListItemButton to={"/issues/" + issue.id} component={NavLink}>
-                <ListItemText>
+                <ListItemText sx={{mr: 2}}>
                     <Typography>{issue.title}</Typography>
                 </ListItemText>
                 {issue.optionNum ? (

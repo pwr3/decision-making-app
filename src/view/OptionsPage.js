@@ -62,13 +62,19 @@ const OptionsPage = () => {
     return (
         <>
             {options.loading && <CircularProgress />}
-            <Box sx={{ py: 3, pl: 2 }}>
+            <Box sx={{ pt: 3, pb: 1, pl: 2 }}>
                 <Typography variant="h5" component="h5">
-                    {options.issueData.title}
+                    📌 {options.issueData.title}
+                </Typography>
+                <Typography sx={{ mt: 1 }} variant="body2" gutterBottom>
+                    Add description of this issue
+                </Typography>
+                <Typography variant="caption" display="block" gutterBottom>
+                    Goals: + add goal
                 </Typography>
             </Box>
             <Box sx={{ pb: 2, pl: 2 }}>
-                <Typography>Options:</Typography>
+                <Typography variant="h6" component="h6">Options:</Typography>
             </Box>
             <OptionsList options={options.optionsList} issueId={issue_id} />
             <NewOption issueId={issue_id} />
