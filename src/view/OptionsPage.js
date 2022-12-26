@@ -4,49 +4,16 @@ import { useParams, useLocation } from "react-router-dom";
 import { add, fetch } from "../store/optionsSlice";
 import {
     CircularProgress,
-    TextField,
     Box,
     Typography,
-    Button,
     Stack, IconButton,
 } from "@mui/material";
 import CustomAccordion from "./components/CustomAccordion";
 import Reasons from "./components/Reasons";
 import EditableTypography from "./components/EditableTypography";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-
-const NewOption = ({ issueId }) => {
-    const [title, setTitle] = useState("");
-    const dispatch = useAppDispatch();
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setTitle("");
-        dispatch(add({ title, issueId }));
-    };
-    return (
-        <Box sx={{ py: 4 }}>
-            <form onSubmit={handleSubmit}>
-                <Stack direction="row" spacing={1}>
-                    <TextField
-                        sx={{ width: "100%" }}
-                        variant="outlined"
-                        placeholder="Add new option..."
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                    />
-                    <Button
-                        sx={{ px: 5 }}
-                        type="submit"
-                        variant="outlined"
-                        disableElevation
-                    >
-                        Add
-                    </Button>
-                </Stack>
-            </form>
-        </Box>
-    );
-};
+import AddForm from "./components/AddForm";
+import {optionsFormProps} from "../helpers/formProps";
 
 const OptionsList = ({ options, issueId }) => {
     return (
@@ -111,7 +78,12 @@ const OptionsPage = () => {
                     </Typography>
                 </Box>
                 <OptionsList options={options.optionsList} issueId={issue_id} />
-                <NewOption issueId={issue_id} />
+                <Box sx={{ py: 3 }}>
+                    <AddForm
+                        formProps={optionsFormProps}
+                        payload={(payload) => dispatch(add({title: payload, issueId: issue_id}))}
+                    />
+                </Box>
             </>
             }
         </>
