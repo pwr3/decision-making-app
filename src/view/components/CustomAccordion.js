@@ -65,7 +65,6 @@ const CustomAccordion = ({ children, option }) => {
                         <Typography variant="caption" sx={{ mt: ".3rem" }}>
                             {option.score * 100}%
                         </Typography>
-
                     </Stack>
                 </Stack>
             </MuiAccordionSummary>

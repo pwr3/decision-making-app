@@ -72,7 +72,11 @@ const countOptionScore = (optionId) => {
 };
 
 const fetchOptions = (issueId) => {
-    const issueData = { title: getIssueById(issueId)[0].title };
+    const issue = getIssueById(issueId)[0];
+    const issueData = {
+        title: issue.title,
+        description: issue.description || "",
+    };
     const optionsList = getOptionsByIssueId(issueId).map((option) => {
         return { ...option, score: countOptionScore(option.id) };
     });

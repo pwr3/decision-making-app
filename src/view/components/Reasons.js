@@ -12,6 +12,7 @@ import {
     TextField,
     Typography,
 } from "@mui/material";
+import EditableTypography from "./EditableTypography";
 
 const NewReason = ({ optionId, issueId }) => {
     const [title, setTitle] = useState("");
@@ -94,8 +95,9 @@ const ReasonsRow = ({ reason }) => {
             <Box sx={{ width: 22, textAlign: "center" }}>
                 {reasonTypeSign(reason.reason_type_id)}
             </Box>
-            <Box>
-                <Typography>{reason.title}</Typography>
+            <Box sx={{ width: '100%'}}>
+                <EditableTypography initTitle={reason.title}/>
+                {/*<Typography>{reason.title}</Typography>*/}
             </Box>
         </Stack>
     );

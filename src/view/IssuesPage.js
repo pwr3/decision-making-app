@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../hooks";
 import { add, fetch } from "../store/issuesSlice";
 import {
-    Box, Button,
+    Box,
+    Button,
     CircularProgress,
     Stack,
     TextField,
@@ -20,23 +21,33 @@ const NewIssue = () => {
         dispatch(add(title));
     };
     return (
-        <Box sx={{ py: 4 }}>
+        <Box sx={{ py: 3 }}>
             <form onSubmit={handleSubmit}>
-                <Typography sx={{ color: '#919191', my: 1}} variant="caption" display="block" gutterBottom>
+                <Typography
+                    sx={{ color: "#919191", my: 1 }}
+                    variant="caption"
+                    display="block"
+                    gutterBottom
+                >
                     Please provide your issue title
                 </Typography>
-                <Stack direction='row' spacing={1}>
+                <Stack direction="row" spacing={1}>
                     <TextField
                         sx={{ width: "100%" }}
                         placeholder="Add new issue..."
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
-                    <Button sx={{ px: 5 }} type='submit' variant="contained" disableElevation>Add</Button>
+                    <Button
+                        sx={{ px: 5 }}
+                        type="submit"
+                        variant="contained"
+                        disableElevation
+                    >
+                        Add
+                    </Button>
                 </Stack>
-
             </form>
-
         </Box>
     );
 };

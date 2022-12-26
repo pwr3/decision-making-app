@@ -2,9 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../hooks";
 import { useParams, useLocation } from "react-router-dom";
 import { add, fetch } from "../store/optionsSlice";
-import { CircularProgress, TextField, Box, Typography } from "@mui/material";
+import {
+    CircularProgress,
+    TextField,
+    Box,
+    Typography,
+    Button,
+    Stack, IconButton,
+} from "@mui/material";
 import CustomAccordion from "./components/CustomAccordion";
 import Reasons from "./components/Reasons";
+import EditableTypography from "./components/EditableTypography";
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const NewOption = ({ issueId }) => {
     const [title, setTitle] = useState("");
@@ -17,13 +26,23 @@ const NewOption = ({ issueId }) => {
     return (
         <Box sx={{ py: 4 }}>
             <form onSubmit={handleSubmit}>
-                <TextField
-                    sx={{ width: "100%" }}
-                    variant="outlined"
-                    placeholder="Add new option..."
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                />
+                <Stack direction="row" spacing={1}>
+                    <TextField
+                        sx={{ width: "100%" }}
+                        variant="outlined"
+                        placeholder="Add new option..."
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
+                    <Button
+                        sx={{ px: 5 }}
+                        type="submit"
+                        variant="outlined"
+                        disableElevation
+                    >
+                        Add
+                    </Button>
+                </Stack>
             </form>
         </Box>
     );
@@ -61,23 +80,40 @@ const OptionsPage = () => {
 
     return (
         <>
-            {options.loading && <CircularProgress />}
-            <Box sx={{ pt: 3, pb: 1, pl: 2 }}>
-                <Typography variant="h5" component="h5">
-                    📌 {options.issueData.title}
-                </Typography>
-                <Typography sx={{ mt: 1 }} variant="body2" gutterBottom>
-                    Add description of this issue
-                </Typography>
-                <Typography variant="caption" display="block" gutterBottom>
-                    Goals: + add goal
-                </Typography>
-            </Box>
-            <Box sx={{ pb: 2, pl: 2 }}>
-                <Typography variant="h6" component="h6">Options:</Typography>
-            </Box>
-            <OptionsList options={options.optionsList} issueId={issue_id} />
-            <NewOption issueId={issue_id} />
+            {options.loading ? <CircularProgress /> :
+            <>
+                <Box sx={{ pt: 2, pb: 1, pl: 2 }}>
+                    <Stack
+                        direction="row"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        spacing={2}
+                    >
+                        <Typography variant="h5" component="h5">
+                            📌 {options.issueData.title}
+                        </Typography>
+                        <IconButton aria-label="more" size="large" color="#ffffff">
+                            <MoreVertIcon />
+                        </IconButton>
+                    </Stack>
+
+                    <Typography sx={{ mt: 1 }} variant="body2" gutterBottom>
+                        {options.issueData.description ||
+                            "Add description of this issue"}
+                    </Typography>
+                    <Typography variant="caption" display="block" gutterBottom>
+                        Goals: + add goal
+                    </Typography>
+                </Box>
+                <Box sx={{ pb: 2, pl: 2 }}>
+                    <Typography variant="h6" component="h6">
+                        Options:
+                    </Typography>
+                </Box>
+                <OptionsList options={options.optionsList} issueId={issue_id} />
+                <NewOption issueId={issue_id} />
+            </>
+            }
         </>
     );
 };
