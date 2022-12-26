@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-    Typography,
-    TextField,
-    Stack,
-    Button,
-    Box
-} from "@mui/material";
+import { Typography, TextField, Stack, Button, Box } from "@mui/material";
 
 const EditableTypography = ({ initTitle }) => {
     const [isFocused, setIsFocused] = useState(false);
@@ -29,7 +23,9 @@ const EditableTypography = ({ initTitle }) => {
                     onMouseOver={() => setHover(true)}
                     onMouseOut={() => setHover(false)}
                 >
-                    <Typography onClick={() => setIsFocused(true)}>{title}</Typography>
+                    <Typography onClick={() => setIsFocused(true)}>
+                        {title}
+                    </Typography>
                     {hover && (
                         <Stack direction="row" spacing={0.5}>
                             <Button
@@ -44,9 +40,7 @@ const EditableTypography = ({ initTitle }) => {
                                 variant="outlined"
                                 disableElevation
                                 sx={{ maxHeight: "22px" }}
-                                onClick={() => {
-
-                                }}
+                                onClick={() => {}}
                             >
                                 Delete
                             </Button>

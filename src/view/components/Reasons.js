@@ -95,8 +95,8 @@ const ReasonsRow = ({ reason }) => {
             <Box sx={{ width: 22, textAlign: "center" }}>
                 {reasonTypeSign(reason.reason_type_id)}
             </Box>
-            <Box sx={{ width: '100%'}}>
-                <EditableTypography initTitle={reason.title}/>
+            <Box sx={{ width: "100%" }}>
+                <EditableTypography initTitle={reason.title} />
                 {/*<Typography>{reason.title}</Typography>*/}
             </Box>
         </Stack>

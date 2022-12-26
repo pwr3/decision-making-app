@@ -6,14 +6,15 @@ import {
     CircularProgress,
     Box,
     Typography,
-    Stack, IconButton,
+    Stack,
+    IconButton,
 } from "@mui/material";
 import CustomAccordion from "./components/CustomAccordion";
 import Reasons from "./components/Reasons";
 import EditableTypography from "./components/EditableTypography";
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import AddForm from "./components/AddForm";
-import {optionsFormProps} from "../helpers/formProps";
+import { optionsFormProps } from "../helpers/formProps";
 
 const OptionsList = ({ options, issueId }) => {
     return (
@@ -47,45 +48,62 @@ const OptionsPage = () => {
 
     return (
         <>
-            {options.loading ? <CircularProgress /> :
-            <>
-                <Box sx={{ pt: 2, pb: 1, pl: 2 }}>
-                    <Stack
-                        direction="row"
-                        justifyContent="space-between"
-                        alignItems="center"
-                        spacing={2}
-                    >
-                        <Typography variant="h5" component="h5">
-                            📌 {options.issueData.title}
-                        </Typography>
-                        <IconButton aria-label="more" size="large" color="#ffffff">
-                            <MoreVertIcon />
-                        </IconButton>
-                    </Stack>
+            {options.loading ? (
+                <CircularProgress />
+            ) : (
+                <>
+                    <Box sx={{ pt: 2, pb: 1, pl: 2 }}>
+                        <Stack
+                            direction="row"
+                            justifyContent="space-between"
+                            alignItems="center"
+                            spacing={2}
+                        >
+                            <Typography variant="h5" component="h5">
+                                📌 {options.issueData.title}
+                            </Typography>
+                            <IconButton
+                                aria-label="more"
+                                size="large"
+                                color="#ffffff"
+                            >
+                                <MoreVertIcon />
+                            </IconButton>
+                        </Stack>
 
-                    <Typography sx={{ mt: 1 }} variant="body2" gutterBottom>
-                        {options.issueData.description ||
-                            "Add description of this issue"}
-                    </Typography>
-                    <Typography variant="caption" display="block" gutterBottom>
-                        Goals: + add goal
-                    </Typography>
-                </Box>
-                <Box sx={{ pb: 2, pl: 2 }}>
-                    <Typography variant="h6" component="h6">
-                        Options:
-                    </Typography>
-                </Box>
-                <OptionsList options={options.optionsList} issueId={issue_id} />
-                <Box sx={{ py: 3 }}>
-                    <AddForm
-                        formProps={optionsFormProps}
-                        payload={(payload) => dispatch(add({title: payload, issueId: issue_id}))}
+                        <Typography sx={{ mt: 1 }} variant="body2" gutterBottom>
+                            {options.issueData.description ||
+                                "Add description of this issue"}
+                        </Typography>
+                        <Typography
+                            variant="caption"
+                            display="block"
+                            gutterBottom
+                        >
+                            Goals: + add goal
+                        </Typography>
+                    </Box>
+                    <Box sx={{ pb: 2, pl: 2 }}>
+                        <Typography variant="h6" component="h6">
+                            Options:
+                        </Typography>
+                    </Box>
+                    <OptionsList
+                        options={options.optionsList}
+                        issueId={issue_id}
                     />
-                </Box>
-            </>
-            }
+                    <Box sx={{ py: 3 }}>
+                        <AddForm
+                            formProps={optionsFormProps}
+                            payload={(payload) =>
+                                dispatch(
+                                    add({ title: payload, issueId: issue_id })
+                                )
+                            }
+                        />
+                    </Box>
+                </>
+            )}
         </>
     );
 };

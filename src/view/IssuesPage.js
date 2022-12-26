@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../hooks";
 import { add, fetch } from "../store/issuesSlice";
-import {
-    Box,
-    CircularProgress,
-    Stack,
-    Typography,
-} from "@mui/material";
+import { Box, CircularProgress, Stack, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import CustomList from "./components/CustomList";
 import AddForm from "./components/AddForm";
-import {issuesFormProps} from "../helpers/formProps";
+import { issuesFormProps } from "../helpers/formProps";
 
 const IssuesList = ({ issues }) => {
     return <CustomList issues={issues} />;
