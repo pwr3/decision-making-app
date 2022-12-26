@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../hooks";
 import { add, fetch } from "../store/issuesSlice";
 import { Box, CircularProgress, Stack, Typography } from "@mui/material";
@@ -37,7 +37,7 @@ const IssuesPage = () => {
                     <Box sx={{ py: 3 }}>
                         <AddForm
                             formProps={issuesFormProps}
-                            payload={(payload) => dispatch(add(payload))}
+                            payload={(payload) => dispatch(add(payload.title))}
                         />
                     </Box>
                 </>

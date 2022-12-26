@@ -97,7 +97,10 @@ const OptionsPage = () => {
                             formProps={optionsFormProps}
                             payload={(payload) =>
                                 dispatch(
-                                    add({ title: payload, issueId: issue_id })
+                                    add({
+                                        title: payload.title,
+                                        issueId: issue_id,
+                                    })
                                 )
                             }
                         />

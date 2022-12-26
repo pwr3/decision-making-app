@@ -1,74 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useAppSelector, useAppDispatch } from "../../hooks";
 import { add } from "../../store/reasonsSlice";
-import {
-    Box,
-    FormControl,
-    FormControlLabel,
-    FormLabel,
-    Radio,
-    RadioGroup,
-    Stack,
-    TextField,
-    Typography,
-} from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import EditableTypography from "./EditableTypography";
-
-const NewReason = ({ optionId, issueId }) => {
-    const [title, setTitle] = useState("");
-    const [reasonTypeId, seReasonTypeId] = useState("1");
-    const dispatch = useAppDispatch();
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        dispatch(add({ title, optionId, issueId, reasonTypeId }));
-        setTitle("");
-    };
-    return (
-        <Box>
-            <form onSubmit={handleSubmit}>
-                <TextField
-                    sx={{ width: "100%" }}
-                    variant="outlined"
-                    placeholder="Enter new reason..."
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                />
-                <FormControl>
-                    <Box sx={{ pt: 2 }}>
-                        <FormLabel id="reason-type-radio-buttons-group-label">
-                            Reason Type
-                        </FormLabel>
-                        <RadioGroup
-                            onChange={(e) => seReasonTypeId(e.target.value)}
-                            row
-                            aria-labelledby="reason-type-radio-buttons-group-label"
-                            defaultValue="1"
-                            value={reasonTypeId}
-                            name="radio-buttons-group"
-                        >
-                            <FormControlLabel
-                                value="1"
-                                control={<Radio />}
-                                label="Positive"
-                            />
-                            <FormControlLabel
-                                value="2"
-                                control={<Radio />}
-                                label="Negative"
-                            />
-                            <FormControlLabel
-                                value="3"
-                                control={<Radio />}
-                                label="Unclear"
-                            />
-                        </RadioGroup>
-                    </Box>
-                </FormControl>
-            </form>
-        </Box>
-    );
-};
+import ExpandedAddForm from "./ExpandedAddForm";
 
 const ReasonsList = ({ reasons }) => {
     return (
@@ -97,7 +32,6 @@ const ReasonsRow = ({ reason }) => {
             </Box>
             <Box sx={{ width: "100%" }}>
                 <EditableTypography initTitle={reason.title} />
-                {/*<Typography>{reason.title}</Typography>*/}
             </Box>
         </Stack>
     );
@@ -105,6 +39,7 @@ const ReasonsRow = ({ reason }) => {
 
 const Reasons = ({ optionId, issueId }) => {
     const reasons = useAppSelector((state) => state.reasons);
+    const dispatch = useAppDispatch();
     const reasonsList = reasons.reasonsList.filter(
         (reason) => reason.optionId == optionId
     );
@@ -112,7 +47,11 @@ const Reasons = ({ optionId, issueId }) => {
     return (
         <Box sx={{ px: 3, pb: 3 }}>
             <ReasonsList reasons={reasonsList[0].reasons} />
-            <NewReason optionId={optionId} issueId={issueId} />
+            <ExpandedAddForm
+                payload={({ title, reasonTypeId }) =>
+                    dispatch(add({ title, optionId, issueId, reasonTypeId }))
+                }
+            />
         </Box>
     );
 };
