@@ -73,15 +73,15 @@ const OptionsPage = () => {
 
                         <Typography sx={{ mt: 1 }} variant="body2" gutterBottom>
                             {options.issueData.description ||
-                                "Add description of this issue"}
+                                "Add a short explanation for this issue."}
                         </Typography>
-                        <Typography
-                            variant="caption"
-                            display="block"
-                            gutterBottom
-                        >
-                            Goals: + add goal
-                        </Typography>
+                        {/*<Typography*/}
+                        {/*    variant="caption"*/}
+                        {/*    display="block"*/}
+                        {/*    gutterBottom*/}
+                        {/*>*/}
+                        {/*    Goals: + add goal*/}
+                        {/*</Typography>*/}
                     </Box>
                     <Box sx={{ pb: 2, pl: 2 }}>
                         <Typography variant="h6" component="h6">

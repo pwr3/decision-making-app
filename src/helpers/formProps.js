@@ -1,7 +1,7 @@
 export const issuesFormProps = {
-    title: "Please provide your issue title",
+    title: "Add a meaningful title to identify this issue.",
     textField: {
-        placeholder: "Add new issue...",
+        placeholder: "Enter title",
     },
     submitBtn: {
         name: "Add",
@@ -10,9 +10,9 @@ export const issuesFormProps = {
 };
 
 export const optionsFormProps = {
-    title: "Please enter option",
+    title: "What options do you have? Please enter option title.",
     textField: {
-        placeholder: "Add new option...",
+        placeholder: "Enter option title",
     },
     submitBtn: {
         name: "Add",
@@ -21,10 +21,10 @@ export const optionsFormProps = {
 };
 
 export const reasonsFormProps = {
-    title: "Please enter reason",
+    title: "You probably have reasons for this option. Good or Bad.",
     textField: {
         autoFocus: true,
-        placeholder: "Add new reason...",
+        placeholder: "Add reason",
     },
     submitBtn: {
         name: "Add",
