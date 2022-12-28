@@ -29,16 +29,20 @@ const IssuesPage = () => {
                 </Stack>
             ) : (
                 <>
-                    {(issues.issueList.length === 0) ? <><EmptyState name={'issue'} /></> :
+                    {issues.issueList.length === 0 ? (
                         <>
-                    <Box sx={{ py: 3, pl: 2 }}>
-                        <Typography variant="h5" component="h5">
-                            ISSUES 🤔
-                        </Typography>
-                    </Box>
-                    <IssuesList issues={issues.issueList} />
+                            <EmptyState name={"issue"} />
                         </>
-                    }
+                    ) : (
+                        <>
+                            <Box sx={{ py: 3, pl: 2 }}>
+                                <Typography variant="h5" component="h5">
+                                    ISSUES 🤔
+                                </Typography>
+                            </Box>
+                            <IssuesList issues={issues.issueList} />
+                        </>
+                    )}
                     <Box sx={{ py: 3 }}>
                         <AddForm
                             formProps={issuesFormProps}

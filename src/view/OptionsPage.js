@@ -84,7 +84,11 @@ const OptionsPage = () => {
                         {/*    Goals: + add goal*/}
                         {/*</Typography>*/}
                     </Box>
-                    {(options.optionsList.length === 0) ? <><EmptyState name={'option'} /></> :
+                    {options.optionsList.length === 0 ? (
+                        <>
+                            <EmptyState name={"option"} />
+                        </>
+                    ) : (
                         <>
                             <Box sx={{ pb: 2, pl: 2 }}>
                                 <Typography variant="h6" component="h6">
@@ -96,7 +100,7 @@ const OptionsPage = () => {
                                 issueId={issue_id}
                             />
                         </>
-                    }
+                    )}
 
                     <Box sx={{ py: 3 }}>
                         <AddForm

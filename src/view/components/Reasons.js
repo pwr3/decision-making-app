@@ -1,7 +1,7 @@
 import React from "react";
 import { useAppSelector, useAppDispatch } from "../../hooks";
 import { add } from "../../store/reasonsSlice";
-import {Box, Stack, Typography} from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import EditableTypography from "./EditableTypography";
 import ExpandedAddForm from "./ExpandedAddForm";
 import EmptyState from "./EmptyState";
@@ -47,12 +47,16 @@ const Reasons = ({ optionId, issueId }) => {
 
     return (
         <Box sx={{ px: 3, pb: 3 }}>
-            {(reasonsList[0].reasons.length === 0) ? <><EmptyState name={'reason'} /></> :
+            {reasonsList[0].reasons.length === 0 ? (
                 <>
-                    <Typography sx={{py: 2}}>Reasons:</Typography>
+                    <EmptyState name={"reason"} />
+                </>
+            ) : (
+                <>
+                    <Typography sx={{ py: 2 }}>Reasons:</Typography>
                     <ReasonsList reasons={reasonsList[0].reasons} />
                 </>
-            }
+            )}
 
             <ExpandedAddForm
                 payload={({ title, reasonTypeId }) =>
