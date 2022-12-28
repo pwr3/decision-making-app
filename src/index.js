@@ -6,7 +6,7 @@ import App from "./App";
 import "./style.css";
 import initialDemoData from "./helpers/demoData";
 
-initialDemoData();
+// initialDemoData();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <Provider store={store}>

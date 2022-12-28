@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import CustomList from "./components/CustomList";
 import AddForm from "./components/AddForm";
 import { issuesFormProps } from "../helpers/formProps";
+import EmptyState from "./components/EmptyState";
 
 const IssuesList = ({ issues }) => {
     return <CustomList issues={issues} />;
@@ -28,12 +29,16 @@ const IssuesPage = () => {
                 </Stack>
             ) : (
                 <>
+                    {(issues.issueList.length === 0) ? <><EmptyState name={'issue'} /></> :
+                        <>
                     <Box sx={{ py: 3, pl: 2 }}>
                         <Typography variant="h5" component="h5">
-                            ISSUES 🙄
+                            ISSUES 🤔
                         </Typography>
                     </Box>
                     <IssuesList issues={issues.issueList} />
+                        </>
+                    }
                     <Box sx={{ py: 3 }}>
                         <AddForm
                             formProps={issuesFormProps}

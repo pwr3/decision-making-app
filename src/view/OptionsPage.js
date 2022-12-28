@@ -15,6 +15,7 @@ import EditableTypography from "./components/EditableTypography";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import AddForm from "./components/AddForm";
 import { optionsFormProps } from "../helpers/formProps";
+import EmptyState from "./components/EmptyState";
 
 const OptionsList = ({ options, issueId }) => {
     return (
@@ -83,15 +84,20 @@ const OptionsPage = () => {
                         {/*    Goals: + add goal*/}
                         {/*</Typography>*/}
                     </Box>
-                    <Box sx={{ pb: 2, pl: 2 }}>
-                        <Typography variant="h6" component="h6">
-                            Options:
-                        </Typography>
-                    </Box>
-                    <OptionsList
-                        options={options.optionsList}
-                        issueId={issue_id}
-                    />
+                    {(options.optionsList.length === 0) ? <><EmptyState name={'option'} /></> :
+                        <>
+                            <Box sx={{ pb: 2, pl: 2 }}>
+                                <Typography variant="h6" component="h6">
+                                    Options:
+                                </Typography>
+                            </Box>
+                            <OptionsList
+                                options={options.optionsList}
+                                issueId={issue_id}
+                            />
+                        </>
+                    }
+
                     <Box sx={{ py: 3 }}>
                         <AddForm
                             formProps={optionsFormProps}

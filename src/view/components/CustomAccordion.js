@@ -63,7 +63,7 @@ const CustomAccordion = ({ children, option }) => {
                         spacing={0.5}
                     >
                         <Typography variant="caption" sx={{ mt: ".3rem" }}>
-                            {option.score * 100}%
+                            {Math.round(option.score * 100)}%
                         </Typography>
                     </Stack>
                 </Stack>

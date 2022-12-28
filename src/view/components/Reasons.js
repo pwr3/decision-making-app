@@ -1,13 +1,14 @@
 import React from "react";
 import { useAppSelector, useAppDispatch } from "../../hooks";
 import { add } from "../../store/reasonsSlice";
-import { Box, Stack } from "@mui/material";
+import {Box, Stack, Typography} from "@mui/material";
 import EditableTypography from "./EditableTypography";
 import ExpandedAddForm from "./ExpandedAddForm";
+import EmptyState from "./EmptyState";
 
 const ReasonsList = ({ reasons }) => {
     return (
-        <Box sx={{ py: 2 }}>
+        <Box sx={{ pb: 2 }}>
             {reasons.map((reason) => (
                 <ReasonsRow reason={reason} key={reason.id} />
             ))}
@@ -46,7 +47,13 @@ const Reasons = ({ optionId, issueId }) => {
 
     return (
         <Box sx={{ px: 3, pb: 3 }}>
-            <ReasonsList reasons={reasonsList[0].reasons} />
+            {(reasonsList[0].reasons.length === 0) ? <><EmptyState name={'reason'} /></> :
+                <>
+                    <Typography sx={{py: 2}}>Reasons:</Typography>
+                    <ReasonsList reasons={reasonsList[0].reasons} />
+                </>
+            }
+
             <ExpandedAddForm
                 payload={({ title, reasonTypeId }) =>
                     dispatch(add({ title, optionId, issueId, reasonTypeId }))
