@@ -1,5 +1,7 @@
 This is a simple showcase app that I am working on in my free time.
 
+![alt text](https://decision-making-app.s3.amazonaws.com/d-m-app-1.png)
+
 ## The Idea
 In summary, this is a brainstorming app that allows you to **clearly see how to solve your problem or issue** by decomposing it into solutions (options) and analyzing these options using arguments. 🤓
 
