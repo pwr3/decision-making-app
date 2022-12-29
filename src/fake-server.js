@@ -63,9 +63,9 @@ const countOptionScore = (optionId) => {
     reasons.forEach((reason, id) => {
         count++;
         if (reason.reason_type_id === "1") {
-            value++;
+            value += 1;
         } else if (reason.reason_type_id === "2") {
-            value--;
+            value -= 0.4;
         }
     });
     return +value / +count;

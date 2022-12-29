@@ -9,8 +9,6 @@ Have a problem that needs to be solved, but it's not that easy?
 
 #### 1. Try to define the problem (Issue)
 
-gif/img
-
 In the next window, you can add more detailed description of this problem if it is more complicated.
 
 > Problem or issue is not as well solved as we would like, mainly because it takes several "layers" to solve. This is how out brain works...
@@ -19,13 +17,9 @@ In the next window, you can add more detailed description of this problem if it 
 
 So, the next step is to brainstorm and create a list of potential solutions (options) **without considering whether they are suitable or not**. The important thing to focus on at this stage is simply generating ideas, rather than evaluating their feasibility.
 
-gif/img
-
 #### 3. Add reasons
 
 And **only now (!)**, go through each option one by one and consider the **pros** and **cons** or **neutral** points (reasons) with respect to the main problem.
-
-gif/img
 
 The program will now analyze the data and provide a percentage breakdown of which solution is the best choice and which ones are not as effective.
 
