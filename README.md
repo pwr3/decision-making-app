@@ -1,5 +1,7 @@
 This is a simple showcase app that I am working on in my free time.
 
+![alt text](https://decision-making-app.s3.amazonaws.com/d-m-app-1.png)
+
 ## The Idea
 In summary, this is a brainstorming app that allows you to **clearly see how to solve your problem or issue** by decomposing it into solutions (options) and analyzing these options using arguments. 🤓
 
@@ -11,7 +13,7 @@ Have a problem that needs to be solved, but it's not that easy?
 
 In the next window, you can add more detailed description of this problem if it is more complicated.
 
-> Problem or issue is not as well solved as we would like, mainly because it takes several "layers" to solve. This is how out brain works...
+> Problem or issue is not as well solved as we would like, mainly because it takes several "layers" to solve. This is how our brain works...
 
 #### 2. Add options one by one using the "Add Option" form
 
@@ -27,5 +29,12 @@ I hope this helps you. 😃
 
 *I don't want to present myself as an expert in this solution, but I have personally found that periodically considering it and using this method often helps me to focus and make the most logical decision.*
 
-## Codebase
+## Implementation Strategy and Motivation
 
+The main focus is - implementing **clean architecture** in this app to _separate the business logic from the infrastructure_.
+
+This can make it easier to **maintain and test** the code, and we can also make the system more **flexible** and **adaptable to change**. For example, if we need to modify the UI of the system, we can do so without affecting the business logic. Similarly, if we need to switch to a different DB provider, we can do so without having to modify the core business logic of the system. 
+
+## License
+
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://github.com/pwr3/decision-making-app/blob/main/LICENSE)
