@@ -35,6 +35,16 @@ The main focus is - implementing **clean architecture** in this app to _separate
 
 This can make it easier to **maintain and test** the code, and we can also make the system more **flexible** and **adaptable to change**. For example, if we need to modify the UI of the system, we can do so without affecting the business logic. Similarly, if we need to switch to a different DB provider, we can do so without having to modify the core business logic of the system. 
 
+## My Stack
+
+In this project, I am using a variety of tools and technologies to build a modern, scalable, and maintainable web application. These include **ReactJS** for building UI, **Redux** for managing application state, and **Redux-Sagas** for managing side effects and asynchronous logic.
+
+I am also making use of custom **Material-UI** (MUI) components to enhance the look and feel of my app, as well as reusable **functional components** to promote code reuse and maintainability.
+
+To optimize and bundle my code for deployment, I am employing **Parcel**. In addition, I have developed a **custom library** that uses browser local storage to imitate a database and simulate asynchronous behavior.
+
+To ensure that my codebase is scalable and maintainable, I am following a **clean architecture** approach.
+
 ## License
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://github.com/pwr3/decision-making-app/blob/main/LICENSE)
