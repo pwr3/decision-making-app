@@ -31,9 +31,11 @@ I hope this helps you. 😃
 
 ## Implementation Strategy and Motivation
 
-The main focus is - implementing **clean architecture** in this app to _separate the business logic from the infrastructure_.
+The primary focus of this project is to apply **clean architecture** principles in order to _separate the business logic from the infrastructure_.
 
-This can make it easier to **maintain and test** the code, and we can also make the system more **flexible** and **adaptable to change**. For example, if we need to modify the UI of the system, we can do so without affecting the business logic. Similarly, if we need to switch to a different DB provider, we can do so without having to modify the core business logic of the system. 
+Implementing clean architecture can make it easier to **maintain and test** the code, and also make the system more **flexible** and **adaptable to change**.
+
+For example, if we need to modify the UI, we can do so _without affecting the business logic_. Similarly, if we need to switch to a different DB provider, we can do so without having to modify the core business logic of the system.
 
 ## My Stack
 
